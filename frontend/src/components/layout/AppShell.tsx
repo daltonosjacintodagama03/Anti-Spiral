@@ -1,0 +1,18 @@
+import { Outlet } from 'react-router-dom';
+import { Header } from './Header';
+import { Footer } from './Footer';
+import { useLocation } from 'react-router-dom';
+
+export function AppShell() {
+  const { pathname } = useLocation();
+  if (pathname === '/acesso') return <main id="conteudo"><Outlet /></main>;
+  if (/^\/(planeje|estude|explore)(\/|$)/.test(pathname)) return <><a href="#conteudo" className="skip-link">Saltar para o conteúdo</a><div id="conteudo"><Outlet /></div></>;
+  return (
+    <>
+      <a href="#conteudo" className="skip-link">Saltar para o conteúdo</a>
+      <Header />
+      <main id="conteudo"><Outlet /></main>
+      <Footer />
+    </>
+  );
+}

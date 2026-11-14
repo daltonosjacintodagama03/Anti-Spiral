@@ -1,0 +1,22 @@
+:root {
+  --bg: #050b14;
+  --surface: #0a1522;
+  --surface-2: #0e1c2e;
+  --border: #17314a;
+  --accent: #1ec8ff;
+  --accent-ink: #04202e;
+  --text: #eaf2fa;
+  --muted: #8fa6bb;
+  --danger: #ff6b6b;
+  --font: 'Archivo Narrow', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --fs-sm: 0.875rem;
+  --fs-md: 1rem;
+  --fs-lg: 1.25rem;
+  --fs-hero: clamp(2.75rem, 8vw, 5rem);
+  --s-1: 0.25rem; --s-2: 0.5rem; --s-3: 0.75rem; --s-4: 1rem;
+  --s-6: 1.5rem; --s-8: 2rem; --s-12: 3rem;
+  --r-sm: 4px;
+  --r-md: 10px;
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --header-h: 64px;
+}

@@ -1,0 +1,10 @@
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: var(--s-2); height: 40px; padding: 0 var(--s-6); border-radius: var(--r-sm); border: 1px solid transparent; font: 600 var(--fs-md)/1 var(--font); cursor: pointer; transition: background 0.15s var(--ease), transform 0.15s var(--ease), border-color 0.15s var(--ease); }
+.btn:active { transform: translateY(1px); }
+.btn--primary { background: var(--accent); color: var(--accent-ink); }
+.btn--primary:hover { background: #5ad8ff; }
+.btn--ghost { background: transparent; color: var(--text); border-color: var(--border); }
+.btn--ghost:hover { border-color: var(--accent); }
+.state { padding: var(--s-8); text-align: center; color: var(--muted); }
+.state--error { color: var(--danger); }
+.skeleton { background: linear-gradient(90deg, var(--surface) 25%, var(--surface-2) 50%, var(--surface) 75%); background-size: 200% 100%; animation: shimmer 1.4s infinite; border-radius: var(--r-md); }
+@keyframes shimmer { to { background-position: -200% 0; } }

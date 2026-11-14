@@ -1,0 +1,170 @@
+:root {
+  color-scheme: dark;
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  background: #05070f;
+  color: #e6ecff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at 50% 0%, #0b1230 0%, #05070f 60%);
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #1b2444;
+}
+
+.app__header h1 {
+  margin: 0;
+  font-size: 1.25rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.app__status {
+  font-size: 0.8rem;
+  color: #7f8db5;
+}
+
+.app__main {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 1rem;
+  flex: 1;
+  padding: 1rem 1.5rem 2rem;
+}
+
+.app__scene {
+  min-height: 60vh;
+  border: 1px solid #1b2444;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #05070f;
+}
+
+.app__scene canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.app__panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  border: 1px solid #1b2444;
+  border-radius: 12px;
+  background: rgba(11, 18, 48, 0.6);
+}
+
+.app__panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.app__panel-head h2 {
+  margin: 0;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+button {
+  padding: 0.45rem 0.8rem;
+  border: 1px solid #2c3d7a;
+  border-radius: 8px;
+  background: #16205a;
+  color: #dbe4ff;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: progress;
+}
+
+.app__error {
+  margin: 0;
+  color: #ff8a8a;
+  font-size: 0.8rem;
+}
+
+.app__empty {
+  margin: 0;
+  color: #7f8db5;
+  font-size: 0.85rem;
+}
+
+.app__jobs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  overflow-y: auto;
+}
+
+.app__jobs li {
+  padding: 0.6rem;
+  border-radius: 8px;
+  background: rgba(5, 7, 15, 0.6);
+  font-size: 0.85rem;
+}
+
+.app__job-head {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.app__badge {
+  margin-left: auto;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  background: #24304f;
+  color: #9fb0dd;
+}
+
+.app__badge--done {
+  background: #123a2a;
+  color: #63e0a5;
+}
+
+.app__badge--running {
+  background: #3a3312;
+  color: #e8cf63;
+}
+
+.app__badge--failed {
+  background: #3a1414;
+  color: #ff8a8a;
+}
+
+@media (max-width: 900px) {
+  .app__main {
+    grid-template-columns: 1fr;
+  }
+}
