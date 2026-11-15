@@ -1,0 +1,14 @@
+{
+  "source": "https://svs.gsfc.nasa.gov/vis/a000000/a005500/a005587/mooninfo_2026.json",
+  "sourcePage": "https://svs.gsfc.nasa.gov/5587/",
+  "retrievedAtUtc": "2026-11-14T18:02:38.962532+00:00",
+  "sourceSha256": "098ec6434ba4fecb84e66485385816d465b7969f142864bcfc9ffc68311b4a86",
+  "sourceBytes": 2094339,
+  "artifact": "frontend/public/data/moon-2026.json",
+  "artifactSha256": "08b617e4bab946874dd83e4d895cbdf86803ef07e38206ca0a44f5d1fd1f3876",
+  "artifactBytes": 314951,
+  "samples": 8760,
+  "firstUtc": "2026-01-01T00:00:00Z",
+  "lastUtc": "2026-12-31T23:00:00Z",
+  "transformation": "Select five numeric fields, preserve source precision and order; no interpolation."
+}
