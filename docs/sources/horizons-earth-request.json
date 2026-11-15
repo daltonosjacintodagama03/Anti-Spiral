@@ -1,0 +1,20 @@
+{
+  "url": "https://ssd.jpl.nasa.gov/api/horizons.api?format=json&COMMAND=%27399%27&OBJ_DATA=%27NO%27&MAKE_EPHEM=%27YES%27&EPHEM_TYPE=%27OBSERVER%27&CENTER=%27coord%40301%27&COORD_TYPE=%27GEODETIC%27&SITE_COORD=%270%2C-89.5%2C0%27&START_TIME=%272026-11-14+12%3A00%27&STOP_TIME=%272026-11-14+12%3A01%27&STEP_SIZE=%271+m%27&QUANTITIES=%274%27&APPARENT=%27AIRLESS%27&CSV_FORMAT=%27YES%27&ANG_FORMAT=%27DEG%27",
+  "parameters": {
+    "format": "json",
+    "COMMAND": "'399'",
+    "OBJ_DATA": "'NO'",
+    "MAKE_EPHEM": "'YES'",
+    "EPHEM_TYPE": "'OBSERVER'",
+    "CENTER": "'coord@301'",
+    "COORD_TYPE": "'GEODETIC'",
+    "SITE_COORD": "'0,-89.5,0'",
+    "START_TIME": "'2026-11-14 12:00'",
+    "STOP_TIME": "'2026-11-14 12:01'",
+    "STEP_SIZE": "'1 m'",
+    "QUANTITIES": "'4'",
+    "APPARENT": "'AIRLESS'",
+    "CSV_FORMAT": "'YES'",
+    "ANG_FORMAT": "'DEG'"
+  }
+}
