@@ -27,3 +27,4 @@ entre todos os ecrãs e endpoints.
 
 Consultar [docs/feature-status.md](docs/feature-status.md).
 Fontes e limitações da visão polar: [docs/sources/verification.md](docs/sources/verification.md).
+Integração e teste das imagens WMTS do Moon Trek: [docs/moon-trek-wmts.md](docs/moon-trek-wmts.md).

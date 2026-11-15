@@ -79,6 +79,16 @@ The API is available at `http://localhost:8000`; interactive documentation is at
 - `POST /api/sites` — persist a site; percentage and slope values are range-validated.
 - `GET /api/jobs` — list analysis jobs (`offset` and `limit` supported).
 - `POST /api/jobs` — persist a pending analysis job.
+- `GET /api/moon-trek/capabilities` — proxy the selected Moon Trek WMTS layer metadata.
+- `GET /api/moon-trek/tiles/{matrix}/{row}/{col}` — proxy one WAC image tile. These are WMTS indices, not latitude/longitude; inspect capabilities for valid matrices and coverage.
+
+Example tile request (first WMTS matrix; verify it has coverage for the tile):
+
+```text
+GET http://localhost:8000/api/moon-trek/tiles/0/0/0
+```
+
+The image returned by this endpoint can be used in the frontend as an image source. A map client must convert the selected lunar coordinates to the WMTS projection and tile indices; this endpoint does not take latitude/longitude and does not assemble arbitrary image crops.
 
 Site responses use the frontend's camelCase fields (`xKm`, `slopeDeg`, etc.). Jobs retain the snake_case response fields already declared by the frontend API client.
 
