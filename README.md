@@ -11,7 +11,10 @@ npm run dev
 ```
 
 Checks disponíveis: `npm run typecheck` e `npm run build`.
-O frontend desta integração corresponde à branch `dalton/frontend`.
+O frontend foi recuperado do commit `c64a1fc` (`merge with dalton/branch`),
+que contém as alterações posteriores à referência antiga `dalton/frontend`.
+A Visão geral inclui o mapa polar e dados pré-calculados de 2026.
+Check científico: `npm run test:science`.
 
 ## Backend
 
@@ -23,5 +26,4 @@ entre todos os ecrãs e endpoints.
 ## Estado
 
 Consultar [docs/feature-status.md](docs/feature-status.md).
-As evidências históricas em `docs/sources/` não significam que o frontend actual
-apresente a anterior visão polar pré-calculada.
+Fontes e limitações da visão polar: [docs/sources/verification.md](docs/sources/verification.md).

@@ -146,3 +146,11 @@ Verificação: `git diff --check`. Validação humana pendente; sem commit.
 - Testes backend não executados: `python3 -m pytest` falhou porque pytest não está instalado; `python` também não está disponível.
 - Validar: executar frontend conforme README e backend conforme backend/README.md.
 - Commit sugerido: `merge: integrate Dalton frontend and Silver backend into dev`.
+
+## Correcção do frontend após merge — 2026-11-15
+
+- Estado: `awaiting_human_validation`; sem novo commit ou push.
+- Recuperado `frontend/` de `c64a1fc`: a referência `dalton/frontend` estava antiga.
+- Backend mantido sem alterações. Esta correcção substitui a escolha de frontend do registo de integração acima.
+- Validar: iniciar Vite e abrir Visão geral; confirmar mapa polar e selector de dia.
+- Checks da correcção: `npm run test:science` passou (8/8); `npm run build` passou; backend sem diff.
