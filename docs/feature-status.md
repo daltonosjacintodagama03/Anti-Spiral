@@ -236,3 +236,22 @@ Verificação: `git diff --check`. Validação humana pendente; sem commit.
 - O TestClient ficou preso no sandbox; a suite foi repetida fora dele e passou
   (29/29, um aviso de depreciação TestClient/httpx já existente).
 - Commit sugerido após validação: `fix: preserve frontend origin through the development proxy`.
+
+## Entrega autorizada em dalton/frontend — 2026-11-15
+
+O utilizador pediu explicitamente o commit de todas as alterações actuais e o push
+para `dalton/frontend`. A branch foi avançada a partir de `dev`, preservando o
+histórico remoto; a referência de `dev` permaneceu em `b028f22`.
+
+Commit da implementação: `2f74a951f00d7b65360ffb357c639a2c8d73bed8`
+(`feat: persist lunar mission analyses and real visibility comparisons`).
+
+| ID | Estado | Critérios/evidências | Checks | Validação humana | Commit | Pendências |
+|---|---|---|---|---|---|---|
+| T01–T04 | committed | Sol/Terra, eventos, timeline e comparação descritos acima | 71 testes backend; 9 testes frontend; TypeScript; build Vite passaram | Commit/push autorizados pelo utilizador | 2f74a95 | Limites científicos documentados |
+| REQ-01–REQ-05 | committed | Menus, requisitos, contas, persistência e mapa descritos acima | Mesmos checks; validações reais anteriores preservadas nos relatórios | Commit/push autorizados pelo utilizador | 2f74a95 | Limites operacionais documentados |
+| REQ-03.1 | committed | Proxy preserva origem na porta efectiva do Vite | Seis regressões incluídas nos 71 testes; navegador real registado acima | Commit/push autorizados pelo utilizador | 2f74a95 | — |
+
+- `git diff --cached --check` passou. O XML original NASA conserva os bytes e o
+  checksum do manifest; a excepção de whitespace aplica-se apenas a esse artefacto.
+- `.env`, `.venv` e `.local/` continuam ignorados e não fazem parte do commit.
