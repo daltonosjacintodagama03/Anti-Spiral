@@ -1,0 +1,187 @@
+:root {
+  --dur-fast: 150ms;
+  --dur-base: 250ms;
+  --dur-slow: 450ms;
+  --dur-hero: 900ms;
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero__bg {
+    animation: bg-settle 1.8s var(--ease-out) 0s both, bg-drift 40s ease-in-out 2s infinite alternate;
+  }
+  .home-header {
+    animation: drop-in 600ms var(--ease-out) 0.1s both;
+  }
+  .hero__moon-sphere {
+    animation: moon-in 700ms var(--ease-out) 0.15s both;
+  }
+  .hero-moon {
+    animation: moon-float 6s ease-in-out infinite;
+  }
+  .hero-moon__body {
+    animation: moon-rise 1s var(--ease-out) 0.35s both, moon-glow 4s ease-in-out 1.4s infinite;
+  }
+  .hero-moon__texture {
+    animation: moon-drift 16s linear infinite;
+  }
+  .hero-moon__halo {
+    animation: halo-pulse 3.8s ease-in-out infinite;
+  }
+  .hero-moon__orbit--a {
+    animation: orbit-spin 14s linear infinite;
+  }
+  .hero-moon__orbit--b {
+    animation: orbit-spin-rev 20s linear infinite;
+  }
+  .hero__title {
+    animation: title-reveal var(--dur-hero) var(--ease-out) 0.25s both;
+  }
+  .hero__intro {
+    animation: rise-fade 700ms var(--ease-out) 0.6s both;
+  }
+  .persona-card {
+    animation: rise-fade 650ms var(--ease-out) calc(0.85s + var(--stagger, 0ms)) both;
+  }
+  .info-band {
+    animation: rise-fade 650ms var(--ease-out) 1.2s both;
+  }
+  .hero__bg::before {
+    animation: stars-twinkle 5s ease-in-out infinite alternate;
+  }
+
+  @keyframes bg-settle {
+    from { opacity: 0; transform: scale(1.05); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  @keyframes bg-drift {
+    from { transform: scale(1) translate(0, 0); }
+    to { transform: scale(1.04) translate(-1%, 0); }
+  }
+  @keyframes drop-in {
+    from { opacity: 0; transform: translateY(-12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes moon-in {
+    from { opacity: 0; transform: translate(-24px, 0); }
+    to { opacity: .95; transform: translate(0, 0); }
+  }
+  @keyframes title-reveal {
+    from { opacity: 0; clip-path: inset(0 100% 0 0); }
+    to { opacity: 1; clip-path: inset(0 0 0 0); }
+  }
+  @keyframes rise-fade {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes stars-twinkle {
+    from { opacity: .35; }
+    to { opacity: 1; }
+  }
+  @keyframes moon-float {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-22px) scale(1.015); }
+  }
+  @keyframes moon-rise {
+    from { opacity: 0; transform: scale(.9) translateY(24px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  @keyframes moon-glow {
+    0%, 100% { box-shadow:
+      inset -34px -28px 55px rgba(8, 14, 22, .6),
+      inset 22px 18px 36px rgba(255,255,255,.16),
+      0 0 0 1px rgba(255,255,255,.08),
+      0 24px 70px rgba(0,0,0,.4),
+      0 0 70px rgba(120, 210, 255, .28),
+      0 0 120px rgba(60, 170, 230, .12); }
+    50% { box-shadow:
+      inset -34px -28px 55px rgba(8, 14, 22, .6),
+      inset 22px 18px 36px rgba(255,255,255,.18),
+      0 0 0 1px rgba(255,255,255,.1),
+      0 24px 70px rgba(0,0,0,.4),
+      0 0 95px rgba(120, 220, 255, .42),
+      0 0 160px rgba(60, 170, 230, .22); }
+  }
+  @keyframes moon-drift {
+    from { transform: rotate(0deg) scale(1.02); }
+    to { transform: rotate(360deg) scale(1.02); }
+  }
+  @keyframes halo-pulse {
+    0%, 100% { opacity: .55; transform: scale(.96); }
+    50% { opacity: 1; transform: scale(1.08); }
+  }
+  @keyframes orbit-spin {
+    from { transform: rotate(-18deg) scaleY(.72); }
+    to { transform: rotate(342deg) scaleY(.72); }
+  }
+  @keyframes orbit-spin-rev {
+    from { transform: rotate(24deg) scaleY(.82); }
+    to { transform: rotate(-336deg) scaleY(.82); }
+  }
+
+  /* Microinteractions */
+  .persona-card {
+    transition: transform var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+  }
+  .persona-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 24px rgba(0,0,0,.35), 0 0 0 1px rgba(30,200,255,.25);
+  }
+  .persona-card__icon-circle {
+    position: relative;
+    transition: box-shadow var(--dur-base) var(--ease-out);
+  }
+  .persona-card:hover .persona-card__icon-circle {
+    box-shadow: 0 0 0 5px rgba(30,200,255,.12);
+  }
+  .persona-card:hover .persona-card__icon-circle svg {
+    transform: scale(1.08);
+  }
+  .persona-card__icon-circle svg {
+    transition: transform var(--dur-base) var(--ease-out);
+  }
+  .persona-card__button {
+    position: relative;
+    overflow: hidden;
+  }
+  .persona-card__button::after {
+    content: '';
+    position: absolute;
+    top: -50%; left: -35%; width: 28%; height: 220%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
+    transform: skewX(-20deg) translateX(-180%);
+    pointer-events: none;
+  }
+  .persona-card__button:hover::after {
+    animation: sheen 750ms var(--ease-out);
+  }
+  @keyframes sheen { to { transform: skewX(-20deg) translateX(620%); } }
+  .info-band__refs a {
+    background-image: linear-gradient(var(--accent), var(--accent));
+    background-size: 0 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size var(--dur-base) var(--ease-out), color var(--dur-fast);
+  }
+  .info-band__refs a:hover {
+    color: #dff6ff;
+    background-size: 100% 1px;
+  }
+}
+
+/* Focus */
+.home-page a:focus-visible, .home-page button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__bg, .home-header, .hero__moon-sphere, .hero__title, .hero__intro, .persona-card, .info-band, .hero__bg::before,
+  .hero-moon, .hero-moon__body, .hero-moon__texture, .hero-moon__halo, .hero-moon__orbit--a, .hero-moon__orbit--b {
+    animation: none !important;
+  }
+  .persona-card, .persona-card__icon-circle, .persona-card__icon-circle svg, .persona-card__button, .info-band__refs a {
+    transition: color var(--dur-fast), background var(--dur-fast), border-color var(--dur-fast) !important;
+  }
+}
