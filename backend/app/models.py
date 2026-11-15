@@ -17,9 +17,10 @@ class LandingSite(Base):
     name: Mapped[str] = mapped_column(String(120), unique=True, index=True)
     x_km: Mapped[float] = mapped_column(Float)
     y_km: Mapped[float] = mapped_column(Float)
-    latitude_deg: Mapped[float] = mapped_column(Float, default=0 ,nullable=False)
-    longitude_deg: Mapped[float] = mapped_column(Float, default=0,  nullable=False)
-    image_url: Mapped[str] = mapped_column(String(255))
+    # Legacy sites may predate coordinate capture; do not invent 0,0 coordinates.
+    latitude_deg: Mapped[float | None] = mapped_column(Float, nullable=True)
+    longitude_deg: Mapped[float | None] = mapped_column(Float, nullable=True)
+    image_url: Mapped[str | None] = mapped_column(String(255), nullable=True)
     slope_deg: Mapped[float] = mapped_column(Float)
     illumination_pct: Mapped[float] = mapped_column(Float)
     earth_visibility_pct: Mapped[float] = mapped_column(Float)
