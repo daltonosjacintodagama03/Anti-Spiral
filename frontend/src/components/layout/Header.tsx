@@ -17,7 +17,7 @@ export function Header() {
   return (
     <header className="header">
       <div className="container header__inner">
-        <Link to="/" className="header__brand" onClick={() => setOpen(false)}>sai-moon</Link>
+        <Link to="/" className="header__brand" onClick={() => setOpen(false)}>Sai-Moon</Link>
         <button className="header__toggle" aria-expanded={open} aria-controls="main-nav" aria-label={open ? 'Fechar menu' : 'Abrir menu'} onClick={() => setOpen((v) => !v)}>
           {open ? <X size={24} /> : <Menu size={24} />}
         </button>
