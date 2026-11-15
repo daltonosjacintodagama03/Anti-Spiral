@@ -41,7 +41,7 @@ export default function AuthPage() {
         <div className="auth-visual__stars" />
         <div className="auth-visual__moon" />
         <div className="auth-visual__horizon" />
-        <Link className="auth-visual__brand" to="/"><Moon size={22} /> Luna Navigator</Link>
+        <Link className="auth-visual__brand" to="/"><Moon size={22} /> Sai-Moon</Link>
         <div className="auth-visual__caption"><span>POLO SUL LUNAR · 89,9° S</span><h2>Um novo horizonte<br />começa aqui.</h2><p>Explore dados reais. Descubra possibilidades além da Terra.</p></div>
         <span className="auth-visual__credit">NAVEGADOR DE EXPLORAÇÃO LUNAR</span>
       </div>

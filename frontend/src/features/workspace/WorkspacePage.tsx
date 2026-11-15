@@ -82,7 +82,9 @@ export default function WorkspacePage({ mode }: { mode: Mode }) {
 
   return <div className="workspace-app">
     <aside className="workspace-sidebar" aria-label="Área de trabalho">
-      <Link to="/" className="workspace-brand" aria-label="Luna Navigator — início"><span><Moon size={21} /></span><strong>Luna Navigator</strong></Link>
+
+      <Link to="/" className="workspace-brand" aria-label="Sai-Moon — início"><span><Moon size={21} /></span><strong>Sai-Moon</strong></Link>
+      <div className="workspace-sidebar__label">ESPAÇO DE TRABALHO</div>
       <nav className="workspace-nav" aria-label="Navegação do perfil">
         {sections.map(({ id, label, icon: Icon }) => <NavLink key={id} to={id === 'visao-geral' ? base : `${base}/${id}`} end className={({ isActive }) => `workspace-nav__link ${isActive ? 'is-active' : ''}`}><Icon size={17} /><span>{label}</span>{id === 'requisitos' && computed && <span className="workspace-nav__count">✓</span>}</NavLink>)}
       </nav>
