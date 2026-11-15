@@ -140,3 +140,21 @@ class AnalysisJob(Base):
 
     user: Mapped["User | None"] = relationship(back_populates="analysis_jobs")
     mission: Mapped["Mission | None"] = relationship(back_populates="analysis_jobs")
+
+
+class AccountSession(Base):
+    __tablename__ = 'account_sessions'
+    token_hash: Mapped[str] = mapped_column(String(64), primary_key=True)
+    user_id: Mapped[str] = mapped_column(ForeignKey('users.id', ondelete='CASCADE'), index=True)
+    expires_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+
+
+class MissionAnalysis(Base):
+    __tablename__ = 'mission_analyses'
+    id: Mapped[str] = mapped_column(String(36), primary_key=True, default=lambda: str(uuid4()))
+    owner_id: Mapped[str] = mapped_column(ForeignKey('users.id', ondelete='CASCADE'), index=True)
+    name: Mapped[str] = mapped_column(String(120))
+    requirements: Mapped[dict] = mapped_column(JSON)
+    results: Mapped[dict] = mapped_column(JSON, default=dict)
+    status: Mapped[str] = mapped_column(String(20), default='pending')
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=utc_now)

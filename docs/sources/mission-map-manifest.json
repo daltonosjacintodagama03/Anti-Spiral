@@ -1,0 +1,62 @@
+{
+  "layer": "LRO_WAC_Mosaic_SPole60_100m_v02",
+  "capabilities_url": "https://trek.nasa.gov/tiles/Moon/SP/LRO_WAC_Mosaic_SPole60_100m_v02/1.0.0/WMTSCapabilities.xml",
+  "retrieved_at": "2026-11-15T08:54:06.037200+00:00",
+  "capabilities_sha256": "88dc1f7ef0acb72d104f77b7de7c1903445ba2c98d2e9119619664483f6318b3",
+  "matrix_set": "default028mm",
+  "matrices": [
+    {
+      "Identifier": "0",
+      "ScaleDenominator": "3.0578404017857101E+07",
+      "TopLeftCorner": "-1095930 1095930",
+      "MatrixWidth": "2.0",
+      "MatrixHeight": "1.0"
+    },
+    {
+      "Identifier": "1",
+      "ScaleDenominator": "1.5289202008928550E+07",
+      "TopLeftCorner": "-1095930 1095930",
+      "MatrixWidth": "4.0",
+      "MatrixHeight": "2.0"
+    },
+    {
+      "Identifier": "2",
+      "ScaleDenominator": "7.6446010044642752E+06",
+      "TopLeftCorner": "-1095930 1095930",
+      "MatrixWidth": "8.0",
+      "MatrixHeight": "4.0"
+    },
+    {
+      "Identifier": "3",
+      "ScaleDenominator": "3.8223005022321376E+06",
+      "TopLeftCorner": "-1095930 1095930",
+      "MatrixWidth": "16.0",
+      "MatrixHeight": "8.0"
+    },
+    {
+      "Identifier": "4",
+      "ScaleDenominator": "1.9111502511160688E+06",
+      "TopLeftCorner": "-1095930 1095930",
+      "MatrixWidth": "32.0",
+      "MatrixHeight": "16.0"
+    },
+    {
+      "Identifier": "5",
+      "ScaleDenominator": "9.5557512555803440E+05",
+      "TopLeftCorner": "-1095930 1095930",
+      "MatrixWidth": "64.0",
+      "MatrixHeight": "32.0"
+    }
+  ],
+  "crs": "urn:ogc:def:crs:IAU2000::30120",
+  "catalogue_url": "https://trek.nasa.gov/moon/TrekServices/ws/index/polar/listVisibleLayers?proj=urn:ogc:def:crs:IAU2000::30120",
+  "radius_m": 1737400,
+  "projection": "Polar stereographic, latitude of origin -90, central meridian 0, scale 1, false easting/northing 0. Catalogue associates both WAC polar layers with this CRS; the older layer provides its full WKT.",
+  "metadata_issue": "Capabilities incorrectly identifies EPSG:0 and labels metre coordinates as WGS84 bbox. CRS established from the official catalogue; these bbox tags are not interpreted as Earth coordinates.",
+  "tile_check": {
+    "url": "https://trek.nasa.gov/tiles/Moon/SP/LRO_WAC_Mosaic_SPole60_100m_v02/1.0.0/default/default028mm/5/14/17.png",
+    "bytes": 34959,
+    "sha256": "d36a42600ab864abcd57cf65776dddf594975edc4de2d8b635fc434e98dfcefe"
+  },
+  "interpretation": "Static orbital mosaic. No elevation extraction, time-dependent terrain shadow or DEM calculation."
+}

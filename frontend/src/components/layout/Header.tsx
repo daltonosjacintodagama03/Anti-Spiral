@@ -12,7 +12,7 @@ const LINKS = [
 
 export function Header() {
   const [open, setOpen] = useState(false);
-  const { session, setSession } = useAuth();
+  const { session, logout } = useAuth();
   const navigate = useNavigate();
   return (
     <header className="header">
@@ -25,7 +25,7 @@ export function Header() {
           {LINKS.map((l) => (
             <NavLink key={l.label} to={l.to} onClick={() => setOpen(false)}>{l.label}</NavLink>
           ))}
-          {session ? <button className="header__user" onClick={() => { setSession(null); navigate('/'); }}><CircleUserRound size={24} aria-hidden /> <span>{session.name}</span><span className="header__logout">Sair</span></button> : <Link className="header__login" to="/acesso">Entrar</Link>}
+          {session ? <button className="header__user" onClick={() => { void logout().then(()=>navigate('/')).catch(()=>window.alert('Não foi possível terminar a sessão. Tente novamente.')); }}><CircleUserRound size={24} aria-hidden /> <span>{session.name}</span><span className="header__logout">Sair</span></button> : <Link className="header__login" to="/acesso">Entrar</Link>}
         </nav>
       </div>
     </header>

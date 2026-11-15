@@ -1,6 +1,8 @@
 # Estado do trabalho
 
-Apenas a tarefa frontend solicitada foi implementada; as features do plano não foram iniciadas.
+Registo incremental das entregas. As secções anteriores preservam o estado observado
+na sua data; o registo mais recente prevalece. O utilizador autorizou o commit e o
+push das alterações actuais para `dalton/frontend` em 2026-11-15.
 
 | ID | Estado | Critérios/evidências | Checks | Validação humana | Commit | Pendências |
 |---|---|---|---|---|---|---|
@@ -154,3 +156,83 @@ Verificação: `git diff --check`. Validação humana pendente; sem commit.
 - Backend mantido sem alterações. Esta correcção substitui a escolha de frontend do registo de integração acima.
 - Validar: iniciar Vite e abrir Visão geral; confirmar mapa polar e selector de dia.
 - Checks da correcção: `npm run test:science` passou (8/8); `npm run build` passou; backend sem diff.
+
+## Task 1 — consulta real de posições, frontend e backend — 2026-11-15
+
+| ID | Estado | Critérios/evidências | Checks | Validação humana | Commit | Pendências |
+|---|---|---|---|---|---|---|
+| T01 | awaiting_human_validation | POST /api/positions, formulário/tabela na Visão geral, consultas Horizons reais e fixtures; docs/task-1-positions.md | pytest: 31 passaram; frontend typecheck, 8 testes científicos e build passaram; navegador com API real passou; consulta de 199 amostras/corpo passou | pending | — | Validar interface; eventos/janelas pertencem à Task 2 |
+
+- Backend verificado com Python 3.10.12 em ambiente temporário, dependências de requirements.txt.
+- Suite sem rede por defeito; navegador e verificações Horizons executados explicitamente.
+- Há um aviso de depreciação da combinação Starlette TestClient/httpx no ambiente de testes; não houve falhas.
+- T01 não substitui nem declara concluídas as features amplas do plano original.
+- Commit sugerido após aprovação: `feat: query real lunar Sun and Earth positions`.
+
+## Configuração local de BD — 2026-11-15
+
+- PostgreSQL 14/main confirmado online na porta 5432.
+- Criado backend/.env local ignorado pelo Git, com segredo aleatório e permissões 600.
+- Preparado scripts/setup_local_database.py: cria apenas role/base em falta, preserva passwords existentes, migra e verifica endpoints reais.
+- Verificação sintáctica do script passou. Execução administrativa pendente: sudo exige autenticação interactiva no terminal do utilizador; a role dosvaldo não existe no PostgreSQL.
+- Não se declara ligação real à BD validada enquanto o script não concluir.
+
+## Entrega conjunta das Tasks 1–4 — 2026-11-15
+
+| ID | Estado | Critérios/evidências | Checks | Validação humana | Commit | Pendências |
+|---|---|---|---|---|---|---|
+| T01 | awaiting_human_validation | API real Sol/Terra, grelha UTC, fontes/checksums, identidade de execução e contrato gerado | Suite backend completa 42 testes passou; consultas reais no navegador | pending | — | BD local separada continua com erro de autenticação |
+| T02 | awaiting_human_validation | Função Python de eventos, janelas, integração, lacunas e maiores períodos; sem cálculo duplicado no frontend | 11 testes do domínio, incluindo replay de comparação real, passaram na suite | pending | — | Modelo apenas geométrico |
+| T03 | awaiting_human_validation | Formulário, horizonte SVG, séries, timeline/play/pause, tabela e próximo evento do cursor | Navegador real: slider por teclado, reprodução e ausência de novas chamadas durante cursor; TypeScript/build passaram | pending | — | Validar experiência manualmente |
+| T04 | awaiting_human_validation | Dois cenários, duplicar +24 h/local, eixos UTC/decorrido, deltas e ordenação por métrica compatível | Duas consultas reais; igualdade, incompatibilidade e erro verificados com interceptação explícita apenas no teste | pending | — | Comparações temporárias na sessão React |
+
+- Frontend: typecheck, 8 testes científicos existentes e build passaram.
+- Backend: 42 testes passaram, com um aviso de depreciação TestClient/httpx.
+- Caso demonstrável: latitude -85°, longitude 0°, 72 h, passo 60 min,
+  início A em 2026-11-14 12:00 UTC e B +24 h. Luz: 47.5002739334 h em A,
+  71.5002739334 h em B. Nascer do Sol estimado dentro de 12:00–13:00 UTC de 15/11.
+- Relatório: docs/validation/four-tasks-report.md; execução: docs/four-tasks.md.
+- Snapshot real pequeno: backend/tests/fixtures/comparison-live.json; nunca usado como fallback na UI.
+- A revalidação PostgreSQL local falhou por password; não houve alteração de credenciais existentes nem perda de dados.
+- Esta entrega não implementa terreno, electricidade, link budget, contas reais ou persistência de análises.
+- Commit sugerido após validação: `feat: analyze lunar visibility timelines and compare scenarios`.
+
+## Fluxo real de requisitos, menus e armazenamento por conta — 2026-11-15
+
+| ID | Estado | Critérios/evidências | Checks | Validação humana | Commit | Pendências |
+|---|---|---|---|---|---|---|
+| REQ-01 | awaiting_human_validation | Menu próprio sol-terra; Visão geral separada; sem candidatos fictícios nos ecrãs de missão | Navegador confirmou separação e navegação | pending | — | — |
+| REQ-02 | awaiting_human_validation | Objectivos múltiplos; duração inteira + dia/semana/mês/ano (semana inicial); UTC, resolução e limiares geométricos | Validação API/UI; série anual real de 4381 amostras/corpo passou; extremos 2026/2028 consultados | pending | — | Mês 30 dias, ano 365 dias explícitos |
+| REQ-03 | awaiting_human_validation | Cookie opaco/Argon2id, owner_id, snapshots na BD, progresso por local e retoma; histórico/relogin/exportação | PostgreSQL real, migrações aplicadas e alembic check sem diferenças; navegador com duas contas, leitura/execução cruzadas negadas | pending | — | Verificação/recuperação de email não incluídas |
+| REQ-04 | awaiting_human_validation | Análise de locais/Resultados usam os mesmos dados Horizons guardados e coordenadas NASA; comparação sem score de segurança | Caso real Nobile/Malapert; 169 amostras/corpo/local; reabertura sem novo cálculo | pending | — | São pontos regionais, não médias de toda a zona |
+| REQ-05 | awaiting_human_validation | WMTS LRO polar, CRS lunar explícito, marcadores no cursor, cores por elevação, tabelas paginadas | Capabilities/catalogue/tile reais verificados; regressão para SVG dos marcadores; testes cardeais/ida-volta | pending | — | Sem DEM, inclinações ou sombras topográficas; tiles ~268 m/pixel |
+
+- BD própria persistente criada em .local/postgres, porta 55432, sem sudo/Docker ou alteração do cluster do sistema.
+- Role da aplicação sem superuser/createdb/createrole. Segredo administrativo separado e ignorado pelo Git.
+- backend/.venv preparado com requirements.txt actualizado; .env local configurado e protegido (600).
+- Fonte NASA dos pontos: Lunar Surface Data Book Rev A (2023), tabela A2-2.
+- Cartografia: LRO_WAC_Mosaic_SPole60_100m_v02. O serviço WMTS declara EPSG:0 incorrectamente; o CRS foi estabelecido no catálogo NASA como IAU2000:30120 e validado na implementação explícita.
+- Checks: suite backend 65 testes passou; frontend typecheck, 9 testes científicos/cartográficos e build passaram; validação real navegador → PostgreSQL → Horizons passou.
+- Foi corrigida uma regra CSS que dava largura zero ao SVG Leaflet, e acrescentada verificação do centro/cor do marcador no teste de navegador.
+- Relatório e reprodução: docs/mission-requirements.md; evidências em docs/sources/mission-*.json e moon-polar-wmts.xml.
+- Não é validação independente SPICE nem certificação de aterragem/comunicação/energia.
+- Alterações anteriores não foram commitadas; esta entrega também aguarda validação humana antes de qualquer commit/push.
+
+- Verificação final: 23 testes de contas repetidos após revisão de cache/privacidade passaram; reabertura após reinício da API e CSV com run_id/unidades confirmados.
+- O helper da BD foi reexecutado com dados existentes sem os reinicializar. As contas temporárias criadas pelos nossos testes foram removidas, preservando quaisquer outras contas.
+
+## Correcção do registo/login através do Vite — 2026-11-15
+
+| ID | Estado | Critérios/evidências | Checks | Validação humana | Commit | Pendências |
+|---|---|---|---|---|---|---|
+| REQ-03.1 | awaiting_human_validation | Reproduzido 403 na porta 5174; proxy preserva Host/Origin com changeOrigin=false, mantendo a protecção da API | 29 testes de contas passaram, incluindo seis regressões de origem; TypeScript passou; navegador real com PostgreSQL: registo, login, cookie, reload e logout em 5174 e login em 5173 | pending | — | Confirmar registo na sessão do utilizador |
+
+- Causa: a configuração abreviada do proxy Vite reescrevia Host para a porta da API;
+  o Origin continuava na porta 5174, ausente da lista CORS limitada à 5173.
+- A correcção usa o mesmo endereço do frontend e funciona na porta efectiva escolhida
+  pelo Vite, sem ampliar a lista de origens ou remover a verificação de origem.
+- Pedidos externos de login/registo/logout continuam a devolver 403; confirmados
+  também no navegador através do proxy activo. A conta temporária de teste foi removida.
+- O TestClient ficou preso no sandbox; a suite foi repetida fora dele e passou
+  (29/29, um aviso de depreciação TestClient/httpx já existente).
+- Commit sugerido após validação: `fix: preserve frontend origin through the development proxy`.

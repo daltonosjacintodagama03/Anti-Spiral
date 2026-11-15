@@ -4,7 +4,7 @@ FastAPI service backed by PostgreSQL. Landing-site measurements are stored as su
 
 ## Requirements
 
-- Python 3.11+
+- Python 3.10+
 - PostgreSQL 14+
 
 ## Local setup
@@ -87,3 +87,47 @@ Site responses use the frontend's camelCase fields (`xKm`, `slopeDeg`, etc.). Jo
 ```sh
 pytest
 ```
+
+## Live lunar positions (Task 1)
+
+`POST /api/positions` returns real Sun/Earth observer azimuth and elevation.
+See [Task 1 instructions](../docs/task-1-positions.md) for request, limits,
+frontend setup, validation and scientific assumptions. No database write or migration
+is required for this endpoint. Run one API process for its provider concurrency limit.
+
+## Configuração automática do PostgreSQL local (Linux)
+
+Na raiz do projecto, usando o Python com as dependências do backend instaladas:
+
+```sh
+python3 scripts/setup_local_database.py
+```
+
+O script pede autenticação sudo no terminal, preserva `.env` existente, cria role/base
+apenas se não existirem, aplica `alembic upgrade head` e verifica health/sites. Jobs exige uma sessão autenticada.
+Não altera passwords existentes nem apaga tabelas ou insere dados de exemplo.
+Se a role já existir, configurar em `.env` a sua password actual antes de repetir.
+Suporta o cluster local na porta 5432. Nunca partilhar a password sudo no chat.
+
+O endpoint de posições também devolve `run_id`, `engine_version`, regra e
+`visibility` com summary/events/windows e razões para eventos ausentes.
+Consultar [Tasks 1–4](../docs/four-tasks.md).
+
+
+## Fluxo actual de requisitos e contas
+
+Consultar [README principal](../README.md) e [docs/mission-requirements.md](../docs/mission-requirements.md).
+A aplicação guarda requisitos e resultados por conta em `mission_analyses`; sessões
+em `account_sessions`. Migração `20261115_accounts`. Endpoints `/api/auth/*`,
+`GET /api/mission-sites`, `POST/GET /api/mission-analyses`, consulta por UUID e
+execução de cada local verificada por proprietário. Os endpoints `/api/jobs`
+agora também exigem sessão e filtram por proprietário.
+
+O helper `scripts/start_project_database.py` é a alternativa sem sudo/Docker:
+cluster próprio persistente, porta 55432, sem modificar o cluster do sistema.
+As instruções administrativas antigas acima continuam válidas apenas para quem
+optar por gerir a sua própria instância PostgreSQL.
+
+`SECURE_COOKIES=false` apenas no desenvolvimento local. Em produção usar HTTPS,
+`SECURE_COOKIES=true`, CORS restrito e um único processo API para respeitar a
+serialização de chamadas ao Horizons. Não há verificação/recuperação de email.

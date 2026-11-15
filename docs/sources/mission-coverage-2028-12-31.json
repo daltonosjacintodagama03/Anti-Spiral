@@ -1,0 +1,170 @@
+{
+  "run_id": "27c8c8ce-55b3-4d2f-a6a4-c03fb1c634eb",
+  "engine_version": "geometric-visibility-1",
+  "visibility_rule": "center",
+  "visibility": {
+    "duration_seconds": 3600.0,
+    "summary": {
+      "sun": {
+        "visible_seconds": 3600.0,
+        "invisible_seconds": 0,
+        "known_seconds": 3600.0,
+        "unknown_seconds": 0,
+        "visible_fraction_total": 1.0,
+        "coverage_fraction": 1.0,
+        "longest_visible_seconds": 3600.0,
+        "longest_invisible_seconds": 0
+      },
+      "earth": {
+        "visible_seconds": 3600.0,
+        "invisible_seconds": 0,
+        "known_seconds": 3600.0,
+        "unknown_seconds": 0,
+        "visible_fraction_total": 1.0,
+        "coverage_fraction": 1.0,
+        "longest_visible_seconds": 3600.0,
+        "longest_invisible_seconds": 0
+      },
+      "combined": {
+        "visible_seconds": 3600.0,
+        "invisible_seconds": 0,
+        "known_seconds": 3600.0,
+        "unknown_seconds": 0,
+        "visible_fraction_total": 1.0,
+        "coverage_fraction": 1.0,
+        "longest_visible_seconds": 3600.0,
+        "longest_invisible_seconds": 0
+      }
+    },
+    "max_sun_elevation_deg": 5.083746,
+    "events": [],
+    "windows": [
+      {
+        "condition": "combined",
+        "state": "visible",
+        "start_utc": "2028-12-31 22:00:00+00:00",
+        "end_utc": "2028-12-31 23:00:00+00:00",
+        "duration_seconds": 3600.0
+      },
+      {
+        "condition": "earth",
+        "state": "visible",
+        "start_utc": "2028-12-31 22:00:00+00:00",
+        "end_utc": "2028-12-31 23:00:00+00:00",
+        "duration_seconds": 3600.0
+      },
+      {
+        "condition": "sun",
+        "state": "visible",
+        "start_utc": "2028-12-31 22:00:00+00:00",
+        "end_utc": "2028-12-31 23:00:00+00:00",
+        "duration_seconds": 3600.0
+      }
+    ],
+    "event_absence": {
+      "sunrise": "not_found_in_range",
+      "sunset": "not_found_in_range",
+      "earthrise": "not_found_in_range",
+      "earthset": "not_found_in_range"
+    }
+  },
+  "request": {
+    "latitude_deg": -85.0,
+    "longitude_deg": 0.0,
+    "start_utc": "2028-12-31 22:00:00+00:00",
+    "duration_hours": 1,
+    "step_minutes": 60
+  },
+  "model": "geometric",
+  "coordinate_frame": "Horizons lunar MEAN_ME; longitude este positiva",
+  "reference_surface_assumption": "Esfera lunar de refer\u00eancia, altitude 0 km assumida; n\u00e3o medida.",
+  "samples": [
+    {
+      "timestamp_utc": "2028-12-31 22:00:00+00:00",
+      "sun": {
+        "azimuth_deg": 352.535352,
+        "elevation_deg": 5.083746
+      },
+      "earth": {
+        "azimuth_deg": 355.277024,
+        "elevation_deg": 4.817031
+      }
+    },
+    {
+      "timestamp_utc": "2028-12-31 23:00:00+00:00",
+      "sun": {
+        "azimuth_deg": 352.028166,
+        "elevation_deg": 5.076319
+      },
+      "earth": {
+        "azimuth_deg": 355.298166,
+        "elevation_deg": 4.748794
+      }
+    }
+  ],
+  "sources": [
+    {
+      "body": "sun",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api",
+      "parameters": {
+        "format": "json",
+        "COMMAND": "'10'",
+        "OBJ_DATA": "'NO'",
+        "MAKE_EPHEM": "'YES'",
+        "EPHEM_TYPE": "'OBSERVER'",
+        "CENTER": "'coord@301'",
+        "COORD_TYPE": "'GEODETIC'",
+        "SITE_COORD": "'0.0,-85.0,0'",
+        "TIME_TYPE": "'UT'",
+        "TIME_DIGITS": "'SECONDS'",
+        "QUANTITIES": "'4'",
+        "APPARENT": "'AIRLESS'",
+        "CSV_FORMAT": "'YES'",
+        "ANG_FORMAT": "'DEG'",
+        "ELEV_CUT": "'-90'",
+        "SKIP_DAYLT": "'NO'",
+        "CAL_FORMAT": "'CAL'",
+        "CAL_TYPE": "'GREGORIAN'",
+        "START_TIME": "'2028-12-31 22:00:00'",
+        "STOP_TIME": "'2028-12-31 23:00:00'",
+        "STEP_SIZE": "'60 m'"
+      },
+      "retrieved_at": "2026-11-15 08:37:15.805412+00:00",
+      "response_sha256": "a265e8f363839527b865501d6d66ccb308e1c45e219e21cbcc66837a93fec72b"
+    },
+    {
+      "body": "earth",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api",
+      "parameters": {
+        "format": "json",
+        "COMMAND": "'399'",
+        "OBJ_DATA": "'NO'",
+        "MAKE_EPHEM": "'YES'",
+        "EPHEM_TYPE": "'OBSERVER'",
+        "CENTER": "'coord@301'",
+        "COORD_TYPE": "'GEODETIC'",
+        "SITE_COORD": "'0.0,-85.0,0'",
+        "TIME_TYPE": "'UT'",
+        "TIME_DIGITS": "'SECONDS'",
+        "QUANTITIES": "'4'",
+        "APPARENT": "'AIRLESS'",
+        "CSV_FORMAT": "'YES'",
+        "ANG_FORMAT": "'DEG'",
+        "ELEV_CUT": "'-90'",
+        "SKIP_DAYLT": "'NO'",
+        "CAL_FORMAT": "'CAL'",
+        "CAL_TYPE": "'GREGORIAN'",
+        "START_TIME": "'2028-12-31 22:00:00'",
+        "STOP_TIME": "'2028-12-31 23:00:00'",
+        "STEP_SIZE": "'60 m'"
+      },
+      "retrieved_at": "2026-11-15 08:37:16.179364+00:00",
+      "response_sha256": "869ae6cbe19196a2bb1f9bdca9226b4b5e3057a1eed62797bdd6ab9d5be5a59a"
+    }
+  ],
+  "limitations": [
+    "Sem relevo ou refrac\u00e7\u00e3o.",
+    "Posi\u00e7\u00f5es aparentes dos centros; n\u00e3o s\u00e3o pot\u00eancia el\u00e9ctrica nem liga\u00e7\u00e3o r\u00e1dio garantida.",
+    "Cobertura limitada a 2026. Eventos estimados por interpola\u00e7\u00e3o linear; transi\u00e7\u00f5es entre amostras podem n\u00e3o ser detectadas. O bracket n\u00e3o garante exactid\u00e3o f\u00edsica."
+  ]
+}

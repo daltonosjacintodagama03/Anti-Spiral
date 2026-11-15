@@ -1,0 +1,1057 @@
+{
+  "request": {
+    "latitude_deg": -85.4381,
+    "longitude_deg": 37.36667,
+    "start_utc": "2026-01-01 00:00:00+00:00",
+    "duration_hours": 8760,
+    "step_minutes": 120
+  },
+  "sources": [
+    {
+      "body": "sun",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api",
+      "parameters": {
+        "format": "json",
+        "COMMAND": "'10'",
+        "OBJ_DATA": "'NO'",
+        "MAKE_EPHEM": "'YES'",
+        "EPHEM_TYPE": "'OBSERVER'",
+        "CENTER": "'coord@301'",
+        "COORD_TYPE": "'GEODETIC'",
+        "SITE_COORD": "'37.36667,-85.4381,0'",
+        "TIME_TYPE": "'UT'",
+        "TIME_DIGITS": "'SECONDS'",
+        "QUANTITIES": "'4'",
+        "APPARENT": "'AIRLESS'",
+        "CSV_FORMAT": "'YES'",
+        "ANG_FORMAT": "'DEG'",
+        "ELEV_CUT": "'-90'",
+        "SKIP_DAYLT": "'NO'",
+        "CAL_FORMAT": "'CAL'",
+        "CAL_TYPE": "'GREGORIAN'",
+        "START_TIME": "'2026-01-01 00:00:00'",
+        "STOP_TIME": "'2027-01-01 00:00:00'",
+        "STEP_SIZE": "'120 m'"
+      },
+      "retrieved_at": "2026-11-15 08:50:03.239074+00:00",
+      "response_sha256": "c5e83fcadd28067f117b2a3af590f112a88fcebe00a444863ea5afd1cffeefe8"
+    },
+    {
+      "body": "earth",
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api",
+      "parameters": {
+        "format": "json",
+        "COMMAND": "'399'",
+        "OBJ_DATA": "'NO'",
+        "MAKE_EPHEM": "'YES'",
+        "EPHEM_TYPE": "'OBSERVER'",
+        "CENTER": "'coord@301'",
+        "COORD_TYPE": "'GEODETIC'",
+        "SITE_COORD": "'37.36667,-85.4381,0'",
+        "TIME_TYPE": "'UT'",
+        "TIME_DIGITS": "'SECONDS'",
+        "QUANTITIES": "'4'",
+        "APPARENT": "'AIRLESS'",
+        "CSV_FORMAT": "'YES'",
+        "ANG_FORMAT": "'DEG'",
+        "ELEV_CUT": "'-90'",
+        "SKIP_DAYLT": "'NO'",
+        "CAL_FORMAT": "'CAL'",
+        "CAL_TYPE": "'GREGORIAN'",
+        "START_TIME": "'2026-01-01 00:00:00'",
+        "STOP_TIME": "'2027-01-01 00:00:00'",
+        "STEP_SIZE": "'120 m'"
+      },
+      "retrieved_at": "2026-11-15 08:50:04.341225+00:00",
+      "response_sha256": "079932a242653fe84b6281a9c06316b1c5623a5fa73a49d782eb678ae2363a9e"
+    }
+  ],
+  "visibility": {
+    "duration_seconds": 31536000.0,
+    "summary": {
+      "sun": {
+        "visible_seconds": 16038820.400973642,
+        "invisible_seconds": 15497179.599026358,
+        "known_seconds": 31536000.0,
+        "unknown_seconds": 0,
+        "visible_fraction_total": 0.5085876585798339,
+        "coverage_fraction": 1.0,
+        "longest_visible_seconds": 1554702.0738814063,
+        "longest_invisible_seconds": 1543788.5994341
+      },
+      "earth": {
+        "visible_seconds": 20371105.93437059,
+        "invisible_seconds": 11164894.06562941,
+        "known_seconds": 31536000.0,
+        "unknown_seconds": 0,
+        "visible_fraction_total": 0.6459635316581237,
+        "coverage_fraction": 1.0,
+        "longest_visible_seconds": 1523809.1882192343,
+        "longest_invisible_seconds": 865773.247132076
+      },
+      "combined": {
+        "visible_seconds": 10682556.207451977,
+        "invisible_seconds": 20853443.792548023,
+        "known_seconds": 31536000.0,
+        "unknown_seconds": 0,
+        "visible_fraction_total": 0.3387416351931753,
+        "coverage_fraction": 1.0,
+        "longest_visible_seconds": 1501064.1683920696,
+        "longest_invisible_seconds": 2275542.1081039794
+      }
+    },
+    "max_sun_elevation_deg": 6.101327,
+    "events": [
+      {
+        "event_type": "sunset",
+        "time_utc": "2026-01-09 06:49:07.000559+00:00",
+        "bracket_start_utc": "2026-01-09 06:00:00+00:00",
+        "bracket_end_utc": "2026-01-09 08:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "earthset",
+        "time_utc": "2026-01-10 01:40:41.658319+00:00",
+        "bracket_start_utc": "2026-01-10 00:00:00+00:00",
+        "bracket_end_utc": "2026-01-10 02:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "earthrise",
+        "time_utc": "2026-01-19 21:47:44.932564+00:00",
+        "bracket_start_utc": "2026-01-19 20:00:00+00:00",
+        "bracket_end_utc": "2026-01-19 22:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "sunrise",
+        "time_utc": "2026-01-21 18:20:02.701823+00:00",
+        "bracket_start_utc": "2026-01-21 18:00:00+00:00",
+        "bracket_end_utc": "2026-01-21 20:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "earthset",
+        "time_utc": "2026-02-06 06:23:37.594335+00:00",
+        "bracket_start_utc": "2026-02-06 06:00:00+00:00",
+        "bracket_end_utc": "2026-02-06 08:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "sunset",
+        "time_utc": "2026-02-07 04:31:04.085359+00:00",
+        "bracket_start_utc": "2026-02-07 04:00:00+00:00",
+        "bracket_end_utc": "2026-02-07 06:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "earthrise",
+        "time_utc": "2026-02-16 05:14:16.640636+00:00",
+        "bracket_start_utc": "2026-02-16 04:00:00+00:00",
+        "bracket_end_utc": "2026-02-16 06:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "sunrise",
+        "time_utc": "2026-02-21 04:16:29.793908+00:00",
+        "bracket_start_utc": "2026-02-21 04:00:00+00:00",
+        "bracket_end_utc": "2026-02-21 06:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "earthset",
+        "time_utc": "2026-03-05 13:56:21.112464+00:00",
+        "bracket_start_utc": "2026-03-05 12:00:00+00:00",
+        "bracket_end_utc": "2026-03-05 14:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "sunset",
+        "time_utc": "2026-03-07 22:16:51.889061+00:00",
+        "bracket_start_utc": "2026-03-07 22:00:00+00:00",
+        "bracket_end_utc": "2026-03-08 00:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "earthrise",
+        "time_utc": "2026-03-15 14:25:54.359596+00:00",
+        "bracket_start_utc": "2026-03-15 14:00:00+00:00",
+        "bracket_end_utc": "2026-03-15 16:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "sunrise",
+        "time_utc": "2026-03-23 14:35:58.849455+00:00",
+        "bracket_start_utc": "2026-03-23 14:00:00+00:00",
+        "bracket_end_utc": "2026-03-23 16:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "earthset",
+        "time_utc": "2026-04-01 21:44:15.245943+00:00",
+        "bracket_start_utc": "2026-04-01 20:00:00+00:00",
+        "bracket_end_utc": "2026-04-01 22:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "sunset",
+        "time_utc": "2026-04-05 16:54:28.032879+00:00",
+        "bracket_start_utc": "2026-04-05 16:00:00+00:00",
+        "bracket_end_utc": "2026-04-05 18:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "earthrise",
+        "time_utc": "2026-04-11 21:28:24.479763+00:00",
+        "bracket_start_utc": "2026-04-11 20:00:00+00:00",
+        "bracket_end_utc": "2026-04-11 22:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "sunrise",
+        "time_utc": "2026-04-22 19:14:17.512762+00:00",
+        "bracket_start_utc": "2026-04-22 18:00:00+00:00",
+        "bracket_end_utc": "2026-04-22 20:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "earthset",
+        "time_utc": "2026-04-29 03:15:35.867460+00:00",
+        "bracket_start_utc": "2026-04-29 02:00:00+00:00",
+        "bracket_end_utc": "2026-04-29 04:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "sunset",
+        "time_utc": "2026-05-04 16:57:18.491273+00:00",
+        "bracket_start_utc": "2026-05-04 16:00:00+00:00",
+        "bracket_end_utc": "2026-05-04 18:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "earthrise",
+        "time_utc": "2026-05-09 00:17:41.547225+00:00",
+        "bracket_start_utc": "2026-05-09 00:00:00+00:00",
+        "bracket_end_utc": "2026-05-09 02:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "sunrise",
+        "time_utc": "2026-05-22 13:47:07.090707+00:00",
+        "bracket_start_utc": "2026-05-22 12:00:00+00:00",
+        "bracket_end_utc": "2026-05-22 14:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "earthset",
+        "time_utc": "2026-05-26 05:52:38.554330+00:00",
+        "bracket_start_utc": "2026-05-26 04:00:00+00:00",
+        "bracket_end_utc": "2026-05-26 06:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "sunset",
+        "time_utc": "2026-06-03 02:07:54.930251+00:00",
+        "bracket_start_utc": "2026-06-03 02:00:00+00:00",
+        "bracket_end_utc": "2026-06-03 04:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "earthrise",
+        "time_utc": "2026-06-05 00:24:26.994719+00:00",
+        "bracket_start_utc": "2026-06-05 00:00:00+00:00",
+        "bracket_end_utc": "2026-06-05 02:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "sunrise",
+        "time_utc": "2026-06-20 20:57:00.461723+00:00",
+        "bracket_start_utc": "2026-06-20 20:00:00+00:00",
+        "bracket_end_utc": "2026-06-20 22:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "earthset",
+        "time_utc": "2026-06-22 07:28:53.366718+00:00",
+        "bracket_start_utc": "2026-06-22 06:00:00+00:00",
+        "bracket_end_utc": "2026-06-22 08:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "earthrise",
+        "time_utc": "2026-07-02 01:29:51.478615+00:00",
+        "bracket_start_utc": "2026-07-02 00:00:00+00:00",
+        "bracket_end_utc": "2026-07-02 02:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "sunset",
+        "time_utc": "2026-07-02 21:37:30.410242+00:00",
+        "bracket_start_utc": "2026-07-02 20:00:00+00:00",
+        "bracket_end_utc": "2026-07-02 22:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "earthset",
+        "time_utc": "2026-07-19 11:00:04.467411+00:00",
+        "bracket_start_utc": "2026-07-19 10:00:00+00:00",
+        "bracket_end_utc": "2026-07-19 12:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "sunrise",
+        "time_utc": "2026-07-19 19:00:06.593080+00:00",
+        "bracket_start_utc": "2026-07-19 18:00:00+00:00",
+        "bracket_end_utc": "2026-07-19 20:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "earthrise",
+        "time_utc": "2026-07-29 05:43:12.518346+00:00",
+        "bracket_start_utc": "2026-07-29 04:00:00+00:00",
+        "bracket_end_utc": "2026-07-29 06:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "sunset",
+        "time_utc": "2026-08-02 01:18:58.539381+00:00",
+        "bracket_start_utc": "2026-08-02 00:00:00+00:00",
+        "bracket_end_utc": "2026-08-02 02:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "earthset",
+        "time_utc": "2026-08-15 17:41:30.269697+00:00",
+        "bracket_start_utc": "2026-08-15 16:00:00+00:00",
+        "bracket_end_utc": "2026-08-15 18:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "sunrise",
+        "time_utc": "2026-08-17 12:06:03.459655+00:00",
+        "bracket_start_utc": "2026-08-17 12:00:00+00:00",
+        "bracket_end_utc": "2026-08-17 14:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "earthrise",
+        "time_utc": "2026-08-25 12:25:40.603086+00:00",
+        "bracket_start_utc": "2026-08-25 12:00:00+00:00",
+        "bracket_end_utc": "2026-08-25 14:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "sunset",
+        "time_utc": "2026-09-01 09:03:56.141984+00:00",
+        "bracket_start_utc": "2026-09-01 08:00:00+00:00",
+        "bracket_end_utc": "2026-09-01 10:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "earthset",
+        "time_utc": "2026-09-12 02:12:07.820739+00:00",
+        "bracket_start_utc": "2026-09-12 02:00:00+00:00",
+        "bracket_end_utc": "2026-09-12 04:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "sunrise",
+        "time_utc": "2026-09-15 04:44:41.641616+00:00",
+        "bracket_start_utc": "2026-09-15 04:00:00+00:00",
+        "bracket_end_utc": "2026-09-15 06:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "earthrise",
+        "time_utc": "2026-09-21 19:16:17.417711+00:00",
+        "bracket_start_utc": "2026-09-21 18:00:00+00:00",
+        "bracket_end_utc": "2026-09-21 20:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "sunset",
+        "time_utc": "2026-10-01 15:57:02.594186+00:00",
+        "bracket_start_utc": "2026-10-01 14:00:00+00:00",
+        "bracket_end_utc": "2026-10-01 16:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "earthset",
+        "time_utc": "2026-10-09 09:47:33.697967+00:00",
+        "bracket_start_utc": "2026-10-09 08:00:00+00:00",
+        "bracket_end_utc": "2026-10-09 10:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "sunrise",
+        "time_utc": "2026-10-14 01:34:56.686239+00:00",
+        "bracket_start_utc": "2026-10-14 00:00:00+00:00",
+        "bracket_end_utc": "2026-10-14 02:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "earthrise",
+        "time_utc": "2026-10-18 23:43:46.725213+00:00",
+        "bracket_start_utc": "2026-10-18 22:00:00+00:00",
+        "bracket_end_utc": "2026-10-19 00:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "sunset",
+        "time_utc": "2026-10-31 16:43:15.898277+00:00",
+        "bracket_start_utc": "2026-10-31 16:00:00+00:00",
+        "bracket_end_utc": "2026-10-31 18:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "earthset",
+        "time_utc": "2026-11-05 14:11:16.466079+00:00",
+        "bracket_start_utc": "2026-11-05 14:00:00+00:00",
+        "bracket_end_utc": "2026-11-05 16:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "sunrise",
+        "time_utc": "2026-11-12 07:23:25.471029+00:00",
+        "bracket_start_utc": "2026-11-12 06:00:00+00:00",
+        "bracket_end_utc": "2026-11-12 08:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "earthrise",
+        "time_utc": "2026-11-15 01:11:42.678378+00:00",
+        "bracket_start_utc": "2026-11-15 00:00:00+00:00",
+        "bracket_end_utc": "2026-11-15 02:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "sunset",
+        "time_utc": "2026-11-30 07:15:07.544910+00:00",
+        "bracket_start_utc": "2026-11-30 06:00:00+00:00",
+        "bracket_end_utc": "2026-11-30 08:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "earthset",
+        "time_utc": "2026-12-02 15:36:01.000543+00:00",
+        "bracket_start_utc": "2026-12-02 14:00:00+00:00",
+        "bracket_end_utc": "2026-12-02 16:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "sunrise",
+        "time_utc": "2026-12-12 01:25:30.724370+00:00",
+        "bracket_start_utc": "2026-12-12 00:00:00+00:00",
+        "bracket_end_utc": "2026-12-12 02:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "earthrise",
+        "time_utc": "2026-12-12 02:09:01.660588+00:00",
+        "bracket_start_utc": "2026-12-12 02:00:00+00:00",
+        "bracket_end_utc": "2026-12-12 04:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "sunset",
+        "time_utc": "2026-12-29 11:06:45.828980+00:00",
+        "bracket_start_utc": "2026-12-29 10:00:00+00:00",
+        "bracket_end_utc": "2026-12-29 12:00:00+00:00",
+        "method": "linear_interpolation"
+      },
+      {
+        "event_type": "earthset",
+        "time_utc": "2026-12-29 17:25:50.848807+00:00",
+        "bracket_start_utc": "2026-12-29 16:00:00+00:00",
+        "bracket_end_utc": "2026-12-29 18:00:00+00:00",
+        "method": "linear_interpolation"
+      }
+    ],
+    "windows": [
+      {
+        "condition": "combined",
+        "state": "visible",
+        "start_utc": "2026-01-01 00:00:00+00:00",
+        "end_utc": "2026-01-09 06:49:07.000559+00:00",
+        "duration_seconds": 715747.0005587443
+      },
+      {
+        "condition": "combined",
+        "state": "invisible",
+        "start_utc": "2026-01-09 06:49:07.000559+00:00",
+        "end_utc": "2026-01-21 18:20:02.701823+00:00",
+        "duration_seconds": 1078255.701264596
+      },
+      {
+        "condition": "combined",
+        "state": "visible",
+        "start_utc": "2026-01-21 18:20:02.701823+00:00",
+        "end_utc": "2026-02-06 06:23:37.594335+00:00",
+        "duration_seconds": 1339414.8925118875
+      },
+      {
+        "condition": "combined",
+        "state": "invisible",
+        "start_utc": "2026-02-06 06:23:37.594335+00:00",
+        "end_utc": "2026-02-21 04:16:29.793908+00:00",
+        "duration_seconds": 1288372.199572843
+      },
+      {
+        "condition": "combined",
+        "state": "visible",
+        "start_utc": "2026-02-21 04:16:29.793908+00:00",
+        "end_utc": "2026-03-05 13:56:21.112464+00:00",
+        "duration_seconds": 1071591.3185558133
+      },
+      {
+        "condition": "combined",
+        "state": "invisible",
+        "start_utc": "2026-03-05 13:56:21.112464+00:00",
+        "end_utc": "2026-03-23 14:35:58.849455+00:00",
+        "duration_seconds": 1557577.7369909985
+      },
+      {
+        "condition": "combined",
+        "state": "visible",
+        "start_utc": "2026-03-23 14:35:58.849455+00:00",
+        "end_utc": "2026-04-01 21:44:15.245943+00:00",
+        "duration_seconds": 803296.3964878283
+      },
+      {
+        "condition": "combined",
+        "state": "invisible",
+        "start_utc": "2026-04-01 21:44:15.245943+00:00",
+        "end_utc": "2026-04-22 19:14:17.512762+00:00",
+        "duration_seconds": 1805402.266819776
+      },
+      {
+        "condition": "combined",
+        "state": "visible",
+        "start_utc": "2026-04-22 19:14:17.512762+00:00",
+        "end_utc": "2026-04-29 03:15:35.867460+00:00",
+        "duration_seconds": 547278.354697058
+      },
+      {
+        "condition": "combined",
+        "state": "invisible",
+        "start_utc": "2026-04-29 03:15:35.867460+00:00",
+        "end_utc": "2026-05-22 13:47:07.090707+00:00",
+        "duration_seconds": 2025091.2232478354
+      },
+      {
+        "condition": "combined",
+        "state": "visible",
+        "start_utc": "2026-05-22 13:47:07.090707+00:00",
+        "end_utc": "2026-05-26 05:52:38.554330+00:00",
+        "duration_seconds": 317131.46362258866
+      },
+      {
+        "condition": "combined",
+        "state": "invisible",
+        "start_utc": "2026-05-26 05:52:38.554330+00:00",
+        "end_utc": "2026-06-20 20:57:00.461723+00:00",
+        "duration_seconds": 2214261.907392919
+      },
+      {
+        "condition": "combined",
+        "state": "visible",
+        "start_utc": "2026-06-20 20:57:00.461723+00:00",
+        "end_utc": "2026-06-22 07:28:53.366718+00:00",
+        "duration_seconds": 124312.90499513969
+      },
+      {
+        "condition": "combined",
+        "state": "invisible",
+        "start_utc": "2026-06-22 07:28:53.366718+00:00",
+        "end_utc": "2026-07-02 01:29:51.478615+00:00",
+        "duration_seconds": 842458.1118967105
+      },
+      {
+        "condition": "combined",
+        "state": "visible",
+        "start_utc": "2026-07-02 01:29:51.478615+00:00",
+        "end_utc": "2026-07-02 21:37:30.410242+00:00",
+        "duration_seconds": 72458.93162744306
+      },
+      {
+        "condition": "combined",
+        "state": "invisible",
+        "start_utc": "2026-07-02 21:37:30.410242+00:00",
+        "end_utc": "2026-07-29 05:43:12.518346+00:00",
+        "duration_seconds": 2275542.1081039794
+      },
+      {
+        "condition": "combined",
+        "state": "visible",
+        "start_utc": "2026-07-29 05:43:12.518346+00:00",
+        "end_utc": "2026-08-02 01:18:58.539381+00:00",
+        "duration_seconds": 329746.02103479207
+      },
+      {
+        "condition": "combined",
+        "state": "invisible",
+        "start_utc": "2026-08-02 01:18:58.539381+00:00",
+        "end_utc": "2026-08-25 12:25:40.603086+00:00",
+        "duration_seconds": 2027202.0637046024
+      },
+      {
+        "condition": "combined",
+        "state": "visible",
+        "start_utc": "2026-08-25 12:25:40.603086+00:00",
+        "end_utc": "2026-09-01 09:03:56.141984+00:00",
+        "duration_seconds": 592695.538898062
+      },
+      {
+        "condition": "combined",
+        "state": "invisible",
+        "start_utc": "2026-09-01 09:03:56.141984+00:00",
+        "end_utc": "2026-09-21 19:16:17.417711+00:00",
+        "duration_seconds": 1764741.2757277861
+      },
+      {
+        "condition": "combined",
+        "state": "visible",
+        "start_utc": "2026-09-21 19:16:17.417711+00:00",
+        "end_utc": "2026-10-01 15:57:02.594186+00:00",
+        "duration_seconds": 852045.1764743552
+      },
+      {
+        "condition": "combined",
+        "state": "invisible",
+        "start_utc": "2026-10-01 15:57:02.594186+00:00",
+        "end_utc": "2026-10-18 23:43:46.725213+00:00",
+        "duration_seconds": 1496804.1310272403
+      },
+      {
+        "condition": "combined",
+        "state": "visible",
+        "start_utc": "2026-10-18 23:43:46.725213+00:00",
+        "end_utc": "2026-10-31 16:43:15.898277+00:00",
+        "duration_seconds": 1097969.1730642766
+      },
+      {
+        "condition": "combined",
+        "state": "invisible",
+        "start_utc": "2026-10-31 16:43:15.898277+00:00",
+        "end_utc": "2026-11-15 01:11:42.678378+00:00",
+        "duration_seconds": 1240106.7801009864
+      },
+      {
+        "condition": "combined",
+        "state": "visible",
+        "start_utc": "2026-11-15 01:11:42.678378+00:00",
+        "end_utc": "2026-11-30 07:15:07.544910+00:00",
+        "duration_seconds": 1317804.8665319197
+      },
+      {
+        "condition": "combined",
+        "state": "invisible",
+        "start_utc": "2026-11-30 07:15:07.544910+00:00",
+        "end_utc": "2026-12-12 02:09:01.660588+00:00",
+        "duration_seconds": 1018434.1156776771
+      },
+      {
+        "condition": "combined",
+        "state": "visible",
+        "start_utc": "2026-12-12 02:09:01.660588+00:00",
+        "end_utc": "2026-12-29 11:06:45.828980+00:00",
+        "duration_seconds": 1501064.1683920696
+      },
+      {
+        "condition": "combined",
+        "state": "invisible",
+        "start_utc": "2026-12-29 11:06:45.828980+00:00",
+        "end_utc": "2027-01-01 00:00:00+00:00",
+        "duration_seconds": 219194.17102007195
+      },
+      {
+        "condition": "earth",
+        "state": "visible",
+        "start_utc": "2026-01-01 00:00:00+00:00",
+        "end_utc": "2026-01-10 01:40:41.658319+00:00",
+        "duration_seconds": 783641.6583185636
+      },
+      {
+        "condition": "earth",
+        "state": "invisible",
+        "start_utc": "2026-01-10 01:40:41.658319+00:00",
+        "end_utc": "2026-01-19 21:47:44.932564+00:00",
+        "duration_seconds": 850023.2742458577
+      },
+      {
+        "condition": "earth",
+        "state": "visible",
+        "start_utc": "2026-01-19 21:47:44.932564+00:00",
+        "end_utc": "2026-02-06 06:23:37.594335+00:00",
+        "duration_seconds": 1499752.6617708064
+      },
+      {
+        "condition": "earth",
+        "state": "invisible",
+        "start_utc": "2026-02-06 06:23:37.594335+00:00",
+        "end_utc": "2026-02-16 05:14:16.640636+00:00",
+        "duration_seconds": 859839.0463003032
+      },
+      {
+        "condition": "earth",
+        "state": "visible",
+        "start_utc": "2026-02-16 05:14:16.640636+00:00",
+        "end_utc": "2026-03-05 13:56:21.112464+00:00",
+        "duration_seconds": 1500124.4718283531
+      },
+      {
+        "condition": "earth",
+        "state": "invisible",
+        "start_utc": "2026-03-05 13:56:21.112464+00:00",
+        "end_utc": "2026-03-15 14:25:54.359596+00:00",
+        "duration_seconds": 865773.247132076
+      },
+      {
+        "condition": "earth",
+        "state": "visible",
+        "start_utc": "2026-03-15 14:25:54.359596+00:00",
+        "end_utc": "2026-04-01 21:44:15.245943+00:00",
+        "duration_seconds": 1495100.886346751
+      },
+      {
+        "condition": "earth",
+        "state": "invisible",
+        "start_utc": "2026-04-01 21:44:15.245943+00:00",
+        "end_utc": "2026-04-11 21:28:24.479763+00:00",
+        "duration_seconds": 863049.2338205939
+      },
+      {
+        "condition": "earth",
+        "state": "visible",
+        "start_utc": "2026-04-11 21:28:24.479763+00:00",
+        "end_utc": "2026-04-29 03:15:35.867460+00:00",
+        "duration_seconds": 1489631.38769624
+      },
+      {
+        "condition": "earth",
+        "state": "invisible",
+        "start_utc": "2026-04-29 03:15:35.867460+00:00",
+        "end_utc": "2026-05-09 00:17:41.547225+00:00",
+        "duration_seconds": 853325.6797657032
+      },
+      {
+        "condition": "earth",
+        "state": "visible",
+        "start_utc": "2026-05-09 00:17:41.547225+00:00",
+        "end_utc": "2026-05-26 05:52:38.554330+00:00",
+        "duration_seconds": 1488897.007104721
+      },
+      {
+        "condition": "earth",
+        "state": "invisible",
+        "start_utc": "2026-05-26 05:52:38.554330+00:00",
+        "end_utc": "2026-06-05 00:24:26.994719+00:00",
+        "duration_seconds": 844308.4403889384
+      },
+      {
+        "condition": "earth",
+        "state": "visible",
+        "start_utc": "2026-06-05 00:24:26.994719+00:00",
+        "end_utc": "2026-06-22 07:28:53.366718+00:00",
+        "duration_seconds": 1494266.3719991203
+      },
+      {
+        "condition": "earth",
+        "state": "invisible",
+        "start_utc": "2026-06-22 07:28:53.366718+00:00",
+        "end_utc": "2026-07-02 01:29:51.478615+00:00",
+        "duration_seconds": 842458.1118967105
+      },
+      {
+        "condition": "earth",
+        "state": "visible",
+        "start_utc": "2026-07-02 01:29:51.478615+00:00",
+        "end_utc": "2026-07-19 11:00:04.467411+00:00",
+        "duration_seconds": 1503012.9887964968
+      },
+      {
+        "condition": "earth",
+        "state": "invisible",
+        "start_utc": "2026-07-19 11:00:04.467411+00:00",
+        "end_utc": "2026-07-29 05:43:12.518346+00:00",
+        "duration_seconds": 844988.0509349257
+      },
+      {
+        "condition": "earth",
+        "state": "visible",
+        "start_utc": "2026-07-29 05:43:12.518346+00:00",
+        "end_utc": "2026-08-15 17:41:30.269697+00:00",
+        "duration_seconds": 1511897.7513509989
+      },
+      {
+        "condition": "earth",
+        "state": "invisible",
+        "start_utc": "2026-08-15 17:41:30.269697+00:00",
+        "end_utc": "2026-08-25 12:25:40.603086+00:00",
+        "duration_seconds": 845050.3333883956
+      },
+      {
+        "condition": "earth",
+        "state": "visible",
+        "start_utc": "2026-08-25 12:25:40.603086+00:00",
+        "end_utc": "2026-09-12 02:12:07.820739+00:00",
+        "duration_seconds": 1518387.217653215
+      },
+      {
+        "condition": "earth",
+        "state": "invisible",
+        "start_utc": "2026-09-12 02:12:07.820739+00:00",
+        "end_utc": "2026-09-21 19:16:17.417711+00:00",
+        "duration_seconds": 839049.5969726332
+      },
+      {
+        "condition": "earth",
+        "state": "visible",
+        "start_utc": "2026-09-21 19:16:17.417711+00:00",
+        "end_utc": "2026-10-09 09:47:33.697967+00:00",
+        "duration_seconds": 1521076.2802558616
+      },
+      {
+        "condition": "earth",
+        "state": "invisible",
+        "start_utc": "2026-10-09 09:47:33.697967+00:00",
+        "end_utc": "2026-10-18 23:43:46.725213+00:00",
+        "duration_seconds": 827773.0272457339
+      },
+      {
+        "condition": "earth",
+        "state": "visible",
+        "start_utc": "2026-10-18 23:43:46.725213+00:00",
+        "end_utc": "2026-11-05 14:11:16.466079+00:00",
+        "duration_seconds": 1520849.740865957
+      },
+      {
+        "condition": "earth",
+        "state": "invisible",
+        "start_utc": "2026-11-05 14:11:16.466079+00:00",
+        "end_utc": "2026-11-15 01:11:42.678378+00:00",
+        "duration_seconds": 817226.212299306
+      },
+      {
+        "condition": "earth",
+        "state": "visible",
+        "start_utc": "2026-11-15 01:11:42.678378+00:00",
+        "end_utc": "2026-12-02 15:36:01.000543+00:00",
+        "duration_seconds": 1520658.322164271
+      },
+      {
+        "condition": "earth",
+        "state": "invisible",
+        "start_utc": "2026-12-02 15:36:01.000543+00:00",
+        "end_utc": "2026-12-12 02:09:01.660588+00:00",
+        "duration_seconds": 815580.6600453258
+      },
+      {
+        "condition": "earth",
+        "state": "visible",
+        "start_utc": "2026-12-12 02:09:01.660588+00:00",
+        "end_utc": "2026-12-29 17:25:50.848807+00:00",
+        "duration_seconds": 1523809.1882192343
+      },
+      {
+        "condition": "earth",
+        "state": "invisible",
+        "start_utc": "2026-12-29 17:25:50.848807+00:00",
+        "end_utc": "2027-01-01 00:00:00+00:00",
+        "duration_seconds": 196449.15119290724
+      },
+      {
+        "condition": "sun",
+        "state": "visible",
+        "start_utc": "2026-01-01 00:00:00+00:00",
+        "end_utc": "2026-01-09 06:49:07.000559+00:00",
+        "duration_seconds": 715747.0005587443
+      },
+      {
+        "condition": "sun",
+        "state": "invisible",
+        "start_utc": "2026-01-09 06:49:07.000559+00:00",
+        "end_utc": "2026-01-21 18:20:02.701823+00:00",
+        "duration_seconds": 1078255.701264596
+      },
+      {
+        "condition": "sun",
+        "state": "visible",
+        "start_utc": "2026-01-21 18:20:02.701823+00:00",
+        "end_utc": "2026-02-07 04:31:04.085359+00:00",
+        "duration_seconds": 1419061.383535806
+      },
+      {
+        "condition": "sun",
+        "state": "invisible",
+        "start_utc": "2026-02-07 04:31:04.085359+00:00",
+        "end_utc": "2026-02-21 04:16:29.793908+00:00",
+        "duration_seconds": 1208725.7085489244
+      },
+      {
+        "condition": "sun",
+        "state": "visible",
+        "start_utc": "2026-02-21 04:16:29.793908+00:00",
+        "end_utc": "2026-03-07 22:16:51.889061+00:00",
+        "duration_seconds": 1274422.0951532172
+      },
+      {
+        "condition": "sun",
+        "state": "invisible",
+        "start_utc": "2026-03-07 22:16:51.889061+00:00",
+        "end_utc": "2026-03-23 14:35:58.849455+00:00",
+        "duration_seconds": 1354746.9603935946
+      },
+      {
+        "condition": "sun",
+        "state": "visible",
+        "start_utc": "2026-03-23 14:35:58.849455+00:00",
+        "end_utc": "2026-04-05 16:54:28.032879+00:00",
+        "duration_seconds": 1131509.1834240165
+      },
+      {
+        "condition": "sun",
+        "state": "invisible",
+        "start_utc": "2026-04-05 16:54:28.032879+00:00",
+        "end_utc": "2026-04-22 19:14:17.512762+00:00",
+        "duration_seconds": 1477189.479883588
+      },
+      {
+        "condition": "sun",
+        "state": "visible",
+        "start_utc": "2026-04-22 19:14:17.512762+00:00",
+        "end_utc": "2026-05-04 16:57:18.491273+00:00",
+        "duration_seconds": 1028580.9785107933
+      },
+      {
+        "condition": "sun",
+        "state": "invisible",
+        "start_utc": "2026-05-04 16:57:18.491273+00:00",
+        "end_utc": "2026-05-22 13:47:07.090707+00:00",
+        "duration_seconds": 1543788.5994341
+      },
+      {
+        "condition": "sun",
+        "state": "visible",
+        "start_utc": "2026-05-22 13:47:07.090707+00:00",
+        "end_utc": "2026-06-03 02:07:54.930251+00:00",
+        "duration_seconds": 994847.8395437151
+      },
+      {
+        "condition": "sun",
+        "state": "invisible",
+        "start_utc": "2026-06-03 02:07:54.930251+00:00",
+        "end_utc": "2026-06-20 20:57:00.461723+00:00",
+        "duration_seconds": 1536545.5314717926
+      },
+      {
+        "condition": "sun",
+        "state": "visible",
+        "start_utc": "2026-06-20 20:57:00.461723+00:00",
+        "end_utc": "2026-07-02 21:37:30.410242+00:00",
+        "duration_seconds": 1039229.9485192932
+      },
+      {
+        "condition": "sun",
+        "state": "invisible",
+        "start_utc": "2026-07-02 21:37:30.410242+00:00",
+        "end_utc": "2026-07-19 19:00:06.593080+00:00",
+        "duration_seconds": 1459356.1828380525
+      },
+      {
+        "condition": "sun",
+        "state": "visible",
+        "start_utc": "2026-07-19 19:00:06.593080+00:00",
+        "end_utc": "2026-08-02 01:18:58.539381+00:00",
+        "duration_seconds": 1145931.946300719
+      },
+      {
+        "condition": "sun",
+        "state": "invisible",
+        "start_utc": "2026-08-02 01:18:58.539381+00:00",
+        "end_utc": "2026-08-17 12:06:03.459655+00:00",
+        "duration_seconds": 1334824.9202745333
+      },
+      {
+        "condition": "sun",
+        "state": "visible",
+        "start_utc": "2026-08-17 12:06:03.459655+00:00",
+        "end_utc": "2026-09-01 09:03:56.141984+00:00",
+        "duration_seconds": 1285072.682328131
+      },
+      {
+        "condition": "sun",
+        "state": "invisible",
+        "start_utc": "2026-09-01 09:03:56.141984+00:00",
+        "end_utc": "2026-09-15 04:44:41.641616+00:00",
+        "duration_seconds": 1194045.499632623
+      },
+      {
+        "condition": "sun",
+        "state": "visible",
+        "start_utc": "2026-09-15 04:44:41.641616+00:00",
+        "end_utc": "2026-10-01 15:57:02.594186+00:00",
+        "duration_seconds": 1422740.9525695182
+      },
+      {
+        "condition": "sun",
+        "state": "invisible",
+        "start_utc": "2026-10-01 15:57:02.594186+00:00",
+        "end_utc": "2026-10-14 01:34:56.686239+00:00",
+        "duration_seconds": 1071474.0920531936
+      },
+      {
+        "condition": "sun",
+        "state": "visible",
+        "start_utc": "2026-10-14 01:34:56.686239+00:00",
+        "end_utc": "2026-10-31 16:43:15.898277+00:00",
+        "duration_seconds": 1523299.2120383233
+      },
+      {
+        "condition": "sun",
+        "state": "invisible",
+        "start_utc": "2026-10-31 16:43:15.898277+00:00",
+        "end_utc": "2026-11-12 07:23:25.471029+00:00",
+        "duration_seconds": 1003209.5727514997
+      },
+      {
+        "condition": "sun",
+        "state": "visible",
+        "start_utc": "2026-11-12 07:23:25.471029+00:00",
+        "end_utc": "2026-11-30 07:15:07.544910+00:00",
+        "duration_seconds": 1554702.0738814063
+      },
+      {
+        "condition": "sun",
+        "state": "invisible",
+        "start_utc": "2026-11-30 07:15:07.544910+00:00",
+        "end_utc": "2026-12-12 01:25:30.724370+00:00",
+        "duration_seconds": 1015823.1794597879
+      },
+      {
+        "condition": "sun",
+        "state": "visible",
+        "start_utc": "2026-12-12 01:25:30.724370+00:00",
+        "end_utc": "2026-12-29 11:06:45.828980+00:00",
+        "duration_seconds": 1503675.1046099588
+      },
+      {
+        "condition": "sun",
+        "state": "invisible",
+        "start_utc": "2026-12-29 11:06:45.828980+00:00",
+        "end_utc": "2027-01-01 00:00:00+00:00",
+        "duration_seconds": 219194.17102007195
+      }
+    ],
+    "event_absence": {}
+  },
+  "engine_version": "geometric-visibility-1",
+  "model": "geometric",
+  "limitations": [
+    "Sem relevo ou refrac\u00e7\u00e3o.",
+    "Posi\u00e7\u00f5es aparentes dos centros; n\u00e3o s\u00e3o pot\u00eancia el\u00e9ctrica nem liga\u00e7\u00e3o r\u00e1dio garantida.",
+    "Cobertura limitada a 2026. Eventos estimados por interpola\u00e7\u00e3o linear; transi\u00e7\u00f5es entre amostras podem n\u00e3o ser detectadas. O bracket n\u00e3o garante exactid\u00e3o f\u00edsica."
+  ],
+  "sample_count": 4381,
+  "elapsed_seconds": 3.8413076079996245
+}

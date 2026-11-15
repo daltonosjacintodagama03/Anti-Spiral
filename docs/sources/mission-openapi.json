@@ -1,0 +1,1446 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Anti-Spiral API",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/api/auth/register": {
+      "post": {
+        "tags": [
+          "accounts"
+        ],
+        "summary": "Register",
+        "operationId": "register_api_auth_register_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Registration"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountRead"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "tags": [
+          "accounts"
+        ],
+        "summary": "Login",
+        "operationId": "login_api_auth_login_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Credentials"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountRead"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/me": {
+      "get": {
+        "tags": [
+          "accounts"
+        ],
+        "summary": "Me",
+        "operationId": "me_api_auth_me_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AccountRead"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/auth/logout": {
+      "post": {
+        "tags": [
+          "accounts"
+        ],
+        "summary": "Logout",
+        "operationId": "logout_api_auth_logout_post",
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          }
+        }
+      }
+    },
+    "/api/mission-sites": {
+      "get": {
+        "tags": [
+          "mission requirements"
+        ],
+        "summary": "Sites",
+        "operationId": "sites_api_mission_sites_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/MissionSite"
+                  },
+                  "type": "array",
+                  "title": "Response Sites Api Mission Sites Get"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/mission-analyses": {
+      "get": {
+        "tags": [
+          "mission requirements"
+        ],
+        "summary": "History",
+        "operationId": "history_api_mission_analyses_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/MissionAnalysisIndex"
+                  },
+                  "type": "array",
+                  "title": "Response History Api Mission Analyses Get"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "mission requirements"
+        ],
+        "summary": "Create",
+        "operationId": "create_api_mission_analyses_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Requirements"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MissionAnalysisRead"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/mission-analyses/{identifier}": {
+      "get": {
+        "tags": [
+          "mission requirements"
+        ],
+        "summary": "Read",
+        "operationId": "read_api_mission_analyses__identifier__get",
+        "parameters": [
+          {
+            "name": "identifier",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Identifier"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MissionAnalysisRead"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/mission-analyses/{identifier}/sites/{site_id}": {
+      "post": {
+        "tags": [
+          "mission requirements"
+        ],
+        "summary": "Execute",
+        "operationId": "execute_api_mission_analyses__identifier__sites__site_id__post",
+        "parameters": [
+          {
+            "name": "identifier",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Identifier"
+            }
+          },
+          {
+            "name": "site_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Site Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MissionAnalysisRead"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AccountRead": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "email": {
+            "type": "string",
+            "title": "Email"
+          },
+          "access": {
+            "type": "string",
+            "title": "Access"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "email",
+          "access"
+        ],
+        "title": "AccountRead"
+      },
+      "Angles": {
+        "properties": {
+          "azimuth_deg": {
+            "type": "number",
+            "title": "Azimuth Deg"
+          },
+          "elevation_deg": {
+            "type": "number",
+            "title": "Elevation Deg"
+          }
+        },
+        "type": "object",
+        "required": [
+          "azimuth_deg",
+          "elevation_deg"
+        ],
+        "title": "Angles"
+      },
+      "Credentials": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "maxLength": 255,
+            "minLength": 3,
+            "title": "Email"
+          },
+          "password": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 8,
+            "title": "Password"
+          },
+          "access": {
+            "type": "string",
+            "enum": [
+              "planeje",
+              "estude",
+              "explore"
+            ],
+            "title": "Access",
+            "default": "explore"
+          }
+        },
+        "type": "object",
+        "required": [
+          "email",
+          "password"
+        ],
+        "title": "Credentials"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "JobCreate": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "kind": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1,
+            "title": "Kind"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Payload"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "kind",
+          "payload"
+        ],
+        "title": "JobCreate"
+      },
+      "JobRead": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "kind": {
+            "type": "string",
+            "title": "Kind"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "payload": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Payload"
+          },
+          "result": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Result"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Updated At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "kind",
+          "status",
+          "payload",
+          "result",
+          "error",
+          "created_at",
+          "updated_at"
+        ],
+        "title": "JobRead"
+      },
+      "MissionAnalysisIndex": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "status",
+          "created_at"
+        ],
+        "title": "MissionAnalysisIndex"
+      },
+      "MissionAnalysisRead": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "requirements": {
+            "$ref": "#/components/schemas/Requirements"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "results": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/SiteProgress"
+            },
+            "type": "object",
+            "title": "Results"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "requirements",
+          "status",
+          "results",
+          "created_at"
+        ],
+        "title": "MissionAnalysisRead"
+      },
+      "MissionPositionRequest": {
+        "properties": {
+          "latitude_deg": {
+            "type": "number",
+            "exclusiveMaximum": 90.0,
+            "exclusiveMinimum": -90.0,
+            "title": "Latitude Deg"
+          },
+          "longitude_deg": {
+            "type": "number",
+            "maximum": 360.0,
+            "minimum": -360.0,
+            "title": "Longitude Deg"
+          },
+          "start_utc": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Start Utc"
+          },
+          "duration_hours": {
+            "type": "integer",
+            "maximum": 17520.0,
+            "minimum": 1.0,
+            "title": "Duration Hours"
+          },
+          "step_minutes": {
+            "type": "integer",
+            "maximum": 1440.0,
+            "minimum": 1.0,
+            "title": "Step Minutes"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "latitude_deg",
+          "longitude_deg",
+          "start_utc",
+          "duration_hours",
+          "step_minutes"
+        ],
+        "title": "MissionPositionRequest"
+      },
+      "MissionPositionResult": {
+        "properties": {
+          "run_id": {
+            "type": "string",
+            "title": "Run Id"
+          },
+          "engine_version": {
+            "type": "string",
+            "title": "Engine Version"
+          },
+          "visibility_rule": {
+            "type": "string",
+            "title": "Visibility Rule"
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/VisibilityResult"
+          },
+          "request": {
+            "$ref": "#/components/schemas/MissionPositionRequest"
+          },
+          "model": {
+            "type": "string",
+            "title": "Model"
+          },
+          "coordinate_frame": {
+            "type": "string",
+            "title": "Coordinate Frame"
+          },
+          "reference_surface_assumption": {
+            "type": "string",
+            "title": "Reference Surface Assumption"
+          },
+          "samples": {
+            "items": {
+              "$ref": "#/components/schemas/PositionSample"
+            },
+            "type": "array",
+            "title": "Samples"
+          },
+          "sources": {
+            "items": {
+              "$ref": "#/components/schemas/PositionSource"
+            },
+            "type": "array",
+            "title": "Sources"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Limitations"
+          }
+        },
+        "type": "object",
+        "required": [
+          "run_id",
+          "engine_version",
+          "visibility_rule",
+          "visibility",
+          "request",
+          "model",
+          "coordinate_frame",
+          "reference_surface_assumption",
+          "samples",
+          "sources",
+          "limitations"
+        ],
+        "title": "MissionPositionResult"
+      },
+      "MissionSite": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "latitude_deg": {
+            "type": "number",
+            "title": "Latitude Deg"
+          },
+          "longitude_deg": {
+            "type": "number",
+            "title": "Longitude Deg"
+          },
+          "source": {
+            "type": "string",
+            "title": "Source",
+            "default": "https://ntrs.nasa.gov/citations/20230007818"
+          },
+          "reference": {
+            "type": "string",
+            "title": "Reference",
+            "default": "Lunar Surface Data Book Rev A (2023), Table A2-2, pp. 57\u201358; ponto regional, n\u00e3o aterragem certificada."
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "latitude_deg",
+          "longitude_deg"
+        ],
+        "title": "MissionSite"
+      },
+      "PositionRequest": {
+        "properties": {
+          "latitude_deg": {
+            "type": "number",
+            "exclusiveMaximum": 90.0,
+            "exclusiveMinimum": -90.0,
+            "title": "Latitude Deg"
+          },
+          "longitude_deg": {
+            "type": "number",
+            "maximum": 360.0,
+            "minimum": -360.0,
+            "title": "Longitude Deg"
+          },
+          "start_utc": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Start Utc"
+          },
+          "duration_hours": {
+            "type": "integer",
+            "maximum": 168.0,
+            "minimum": 1.0,
+            "title": "Duration Hours"
+          },
+          "step_minutes": {
+            "type": "integer",
+            "maximum": 60.0,
+            "minimum": 1.0,
+            "title": "Step Minutes"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "latitude_deg",
+          "longitude_deg",
+          "start_utc",
+          "duration_hours",
+          "step_minutes"
+        ],
+        "title": "PositionRequest"
+      },
+      "PositionResult": {
+        "properties": {
+          "run_id": {
+            "type": "string",
+            "title": "Run Id"
+          },
+          "engine_version": {
+            "type": "string",
+            "title": "Engine Version"
+          },
+          "visibility_rule": {
+            "type": "string",
+            "title": "Visibility Rule"
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/VisibilityResult"
+          },
+          "request": {
+            "$ref": "#/components/schemas/PositionRequest"
+          },
+          "model": {
+            "type": "string",
+            "title": "Model"
+          },
+          "coordinate_frame": {
+            "type": "string",
+            "title": "Coordinate Frame"
+          },
+          "reference_surface_assumption": {
+            "type": "string",
+            "title": "Reference Surface Assumption"
+          },
+          "samples": {
+            "items": {
+              "$ref": "#/components/schemas/PositionSample"
+            },
+            "type": "array",
+            "title": "Samples"
+          },
+          "sources": {
+            "items": {
+              "$ref": "#/components/schemas/PositionSource"
+            },
+            "type": "array",
+            "title": "Sources"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Limitations"
+          }
+        },
+        "type": "object",
+        "required": [
+          "run_id",
+          "engine_version",
+          "visibility_rule",
+          "visibility",
+          "request",
+          "model",
+          "coordinate_frame",
+          "reference_surface_assumption",
+          "samples",
+          "sources",
+          "limitations"
+        ],
+        "title": "PositionResult"
+      },
+      "PositionSample": {
+        "properties": {
+          "timestamp_utc": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Timestamp Utc"
+          },
+          "sun": {
+            "$ref": "#/components/schemas/Angles"
+          },
+          "earth": {
+            "$ref": "#/components/schemas/Angles"
+          }
+        },
+        "type": "object",
+        "required": [
+          "timestamp_utc",
+          "sun",
+          "earth"
+        ],
+        "title": "PositionSample"
+      },
+      "PositionSource": {
+        "properties": {
+          "body": {
+            "type": "string",
+            "title": "Body"
+          },
+          "url": {
+            "type": "string",
+            "title": "Url"
+          },
+          "parameters": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Parameters"
+          },
+          "retrieved_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Retrieved At"
+          },
+          "response_sha256": {
+            "type": "string",
+            "title": "Response Sha256"
+          }
+        },
+        "type": "object",
+        "required": [
+          "body",
+          "url",
+          "parameters",
+          "retrieved_at",
+          "response_sha256"
+        ],
+        "title": "PositionSource"
+      },
+      "Registration": {
+        "properties": {
+          "email": {
+            "type": "string",
+            "maxLength": 255,
+            "minLength": 3,
+            "title": "Email"
+          },
+          "password": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 8,
+            "title": "Password"
+          },
+          "access": {
+            "type": "string",
+            "enum": [
+              "planeje",
+              "estude",
+              "explore"
+            ],
+            "title": "Access",
+            "default": "explore"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "email",
+          "password",
+          "name"
+        ],
+        "title": "Registration"
+      },
+      "RequirementCheck": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "actual": {
+            "type": "number",
+            "title": "Actual"
+          },
+          "limit": {
+            "type": "number",
+            "title": "Limit"
+          },
+          "unit": {
+            "type": "string",
+            "title": "Unit"
+          },
+          "met": {
+            "type": "boolean",
+            "title": "Met"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "actual",
+          "limit",
+          "unit",
+          "met"
+        ],
+        "title": "RequirementCheck"
+      },
+      "Requirements": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "objectives": {
+            "items": {
+              "type": "string",
+              "enum": [
+                "science",
+                "resources",
+                "technology",
+                "astronomy"
+              ]
+            },
+            "type": "array",
+            "maxItems": 4,
+            "minItems": 1,
+            "title": "Objectives"
+          },
+          "duration_value": {
+            "type": "integer",
+            "maximum": 730.0,
+            "minimum": 1.0,
+            "title": "Duration Value"
+          },
+          "duration_unit": {
+            "type": "string",
+            "enum": [
+              "day",
+              "week",
+              "month",
+              "year"
+            ],
+            "title": "Duration Unit",
+            "default": "week"
+          },
+          "start_utc": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Start Utc"
+          },
+          "step_minutes": {
+            "type": "integer",
+            "maximum": 1440.0,
+            "minimum": 1.0,
+            "title": "Step Minutes"
+          },
+          "site_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "maxItems": 4,
+            "minItems": 2,
+            "title": "Site Ids"
+          },
+          "minimum_light_pct": {
+            "type": "number",
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Minimum Light Pct",
+            "default": 50
+          },
+          "minimum_earth_pct": {
+            "type": "number",
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Minimum Earth Pct",
+            "default": 50
+          },
+          "maximum_dark_hours": {
+            "type": "number",
+            "maximum": 17520.0,
+            "minimum": 0.0,
+            "title": "Maximum Dark Hours",
+            "default": 72
+          },
+          "maximum_earth_outage_hours": {
+            "type": "number",
+            "maximum": 17520.0,
+            "minimum": 0.0,
+            "title": "Maximum Earth Outage Hours",
+            "default": 72
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "name",
+          "objectives",
+          "duration_value",
+          "start_utc",
+          "step_minutes",
+          "site_ids"
+        ],
+        "title": "Requirements"
+      },
+      "SiteInput": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "xKm": {
+            "type": "number",
+            "maximum": 1000.0,
+            "minimum": -1000.0,
+            "title": "Xkm"
+          },
+          "yKm": {
+            "type": "number",
+            "maximum": 1000.0,
+            "minimum": -1000.0,
+            "title": "Ykm"
+          },
+          "slopeDeg": {
+            "type": "number",
+            "maximum": 90.0,
+            "minimum": 0.0,
+            "title": "Slopedeg"
+          },
+          "illuminationPct": {
+            "type": "number",
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Illuminationpct"
+          },
+          "earthVisibilityPct": {
+            "type": "number",
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Earthvisibilitypct"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "xKm",
+          "yKm",
+          "slopeDeg",
+          "illuminationPct",
+          "earthVisibilityPct"
+        ],
+        "title": "SiteInput"
+      },
+      "SiteProgress": {
+        "properties": {
+          "site": {
+            "$ref": "#/components/schemas/MissionSite"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error"
+          },
+          "lease_until": {
+            "anyOf": [
+              {
+                "type": "string",
+                "format": "date-time"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lease Until"
+          },
+          "analysis": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MissionPositionResult"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "checks": {
+            "items": {
+              "$ref": "#/components/schemas/RequirementCheck"
+            },
+            "type": "array",
+            "title": "Checks"
+          }
+        },
+        "type": "object",
+        "required": [
+          "site",
+          "status"
+        ],
+        "title": "SiteProgress"
+      },
+      "SiteRead": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "title": "Name"
+          },
+          "xKm": {
+            "type": "number",
+            "maximum": 1000.0,
+            "minimum": -1000.0,
+            "title": "Xkm"
+          },
+          "yKm": {
+            "type": "number",
+            "maximum": 1000.0,
+            "minimum": -1000.0,
+            "title": "Ykm"
+          },
+          "slopeDeg": {
+            "type": "number",
+            "maximum": 90.0,
+            "minimum": 0.0,
+            "title": "Slopedeg"
+          },
+          "illuminationPct": {
+            "type": "number",
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Illuminationpct"
+          },
+          "earthVisibilityPct": {
+            "type": "number",
+            "maximum": 100.0,
+            "minimum": 0.0,
+            "title": "Earthvisibilitypct"
+          },
+          "id": {
+            "type": "string",
+            "title": "Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "xKm",
+          "yKm",
+          "slopeDeg",
+          "illuminationPct",
+          "earthVisibilityPct",
+          "id"
+        ],
+        "title": "SiteRead"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "VisibilityEvent": {
+        "properties": {
+          "event_type": {
+            "type": "string",
+            "title": "Event Type"
+          },
+          "time_utc": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Time Utc"
+          },
+          "bracket_start_utc": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Bracket Start Utc"
+          },
+          "bracket_end_utc": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Bracket End Utc"
+          },
+          "method": {
+            "type": "string",
+            "title": "Method"
+          }
+        },
+        "type": "object",
+        "required": [
+          "event_type",
+          "time_utc",
+          "bracket_start_utc",
+          "bracket_end_utc",
+          "method"
+        ],
+        "title": "VisibilityEvent"
+      },
+      "VisibilityResult": {
+        "properties": {
+          "duration_seconds": {
+            "type": "number",
+            "title": "Duration Seconds"
+          },
+          "summary": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/VisibilitySummary"
+            },
+            "type": "object",
+            "title": "Summary"
+          },
+          "max_sun_elevation_deg": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Sun Elevation Deg"
+          },
+          "events": {
+            "items": {
+              "$ref": "#/components/schemas/VisibilityEvent"
+            },
+            "type": "array",
+            "title": "Events"
+          },
+          "windows": {
+            "items": {
+              "$ref": "#/components/schemas/VisibilityWindow"
+            },
+            "type": "array",
+            "title": "Windows"
+          },
+          "event_absence": {
+            "additionalProperties": {
+              "type": "string"
+            },
+            "type": "object",
+            "title": "Event Absence"
+          }
+        },
+        "type": "object",
+        "required": [
+          "duration_seconds",
+          "summary",
+          "max_sun_elevation_deg",
+          "events",
+          "windows",
+          "event_absence"
+        ],
+        "title": "VisibilityResult"
+      },
+      "VisibilitySummary": {
+        "properties": {
+          "visible_seconds": {
+            "type": "number",
+            "title": "Visible Seconds"
+          },
+          "invisible_seconds": {
+            "type": "number",
+            "title": "Invisible Seconds"
+          },
+          "known_seconds": {
+            "type": "number",
+            "title": "Known Seconds"
+          },
+          "unknown_seconds": {
+            "type": "number",
+            "title": "Unknown Seconds"
+          },
+          "visible_fraction_total": {
+            "type": "number",
+            "title": "Visible Fraction Total"
+          },
+          "coverage_fraction": {
+            "type": "number",
+            "title": "Coverage Fraction"
+          },
+          "longest_visible_seconds": {
+            "type": "number",
+            "title": "Longest Visible Seconds"
+          },
+          "longest_invisible_seconds": {
+            "type": "number",
+            "title": "Longest Invisible Seconds"
+          }
+        },
+        "type": "object",
+        "required": [
+          "visible_seconds",
+          "invisible_seconds",
+          "known_seconds",
+          "unknown_seconds",
+          "visible_fraction_total",
+          "coverage_fraction",
+          "longest_visible_seconds",
+          "longest_invisible_seconds"
+        ],
+        "title": "VisibilitySummary"
+      },
+      "VisibilityWindow": {
+        "properties": {
+          "condition": {
+            "type": "string",
+            "title": "Condition"
+          },
+          "state": {
+            "type": "string",
+            "title": "State"
+          },
+          "start_utc": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Start Utc"
+          },
+          "end_utc": {
+            "type": "string",
+            "format": "date-time",
+            "title": "End Utc"
+          },
+          "duration_seconds": {
+            "type": "number",
+            "title": "Duration Seconds"
+          }
+        },
+        "type": "object",
+        "required": [
+          "condition",
+          "state",
+          "start_utc",
+          "end_utc",
+          "duration_seconds"
+        ],
+        "title": "VisibilityWindow"
+      }
+    }
+  }
+}

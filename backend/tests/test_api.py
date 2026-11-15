@@ -55,6 +55,7 @@ def test_sites_reject_duplicate_names(client):
 
 
 def test_create_and_list_jobs(client):
+    assert client.post("/api/auth/register", json={"name":"Tester","email":"jobs@example.com","password":"testpassword"}).status_code == 201
     payload = {
         "name": "South pole analysis",
         "kind": "site-ranking",

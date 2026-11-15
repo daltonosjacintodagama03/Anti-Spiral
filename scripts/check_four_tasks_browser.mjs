@@ -1,0 +1,76 @@
+import { authenticate } from './browser_session.mjs';
+// Opt-in live test: start API/Vite first. No synthetic data in the normal UI.
+import { writeFile } from 'node:fs/promises';
+const { chromium } = await import(process.env.ANTISPIRAL_PLAYWRIGHT_MODULE || 'playwright-core');
+const browser = await chromium.launch({executablePath:process.env.ANTISPIRAL_CHROME || '/usr/bin/google-chrome',headless:true,args:['--no-sandbox']});
+function assert(value,message){if(!value)throw Error(message);}
+try {
+ const page=await browser.newPage();
+ const base=process.env.ANTISPIRAL_WEB_URL || 'http://127.0.0.1:5173';
+ await authenticate(page.context(),base);
+ let calls=0;
+ page.on('request',request=>{if(request.url().endsWith('/api/positions')) calls++;});
+ await page.goto(`${base}/explore/sol-terra`);
+ const a=page.getByRole('region',{name:'Cenário A',exact:true});
+ await a.getByRole('heading',{name:'Análise real de Sol e Terra'}).waitFor();
+ await a.getByLabel('Latitude (°)').fill('-85');
+ await a.getByLabel('Duração (horas)').fill('72');
+ let responsePromise=page.waitForResponse(response=>response.url().endsWith('/api/positions'));
+ await a.getByRole('button',{name:'Analisar Sol e Terra',exact:true}).click();
+ let response=await responsePromise; let resultA=await response.json();
+ assert(response.status()===200,JSON.stringify(resultA));
+ await a.getByRole('heading',{name:'Resultado — 73 instantes'}).waitFor();
+ assert(resultA.visibility.summary.sun.unknown_seconds===0,'coverage');
+ const callCount=calls;
+ const slider=a.getByRole('slider',{name:'Instante da timeline'});
+ await slider.focus(); await slider.press('Home');
+ for(let i=0;i<5;i++) await slider.press('ArrowRight');
+ await a.getByRole('button',{name:'Reproduzir',exact:true}).click();
+ await page.waitForTimeout(850);
+ await a.getByRole('button',{name:'Pausar',exact:true}).click();
+ assert(calls===callCount,'Timeline made new network requests');
+ assert(Number(await a.getByRole('slider').inputValue())>=6,'Playback did not advance');
+ await a.getByRole('button',{name:'Duplicar e adiar +24 h'}).click();
+ const b=page.getByRole('region',{name:'Cenário B',exact:true});
+ assert(await b.getByLabel('Início (UTC)').inputValue()==='2026-11-15T12:00','shift date');
+ assert(await b.getByLabel('Latitude (°)').inputValue()==='-85','copy latitude');
+ responsePromise=page.waitForResponse(response=>response.url().endsWith('/api/positions'));
+ await b.getByRole('button',{name:'Analisar Sol e Terra — B',exact:true}).click();
+ response=await responsePromise;const resultB=await response.json();
+ assert(response.status()===200,JSON.stringify(resultB));
+ const comparison=page.getByRole('region',{name:'Comparação de cenários'});
+ await comparison.getByRole('heading',{name:'Comparação A × B'}).waitFor();
+ assert(await comparison.getByLabel('Ordenar por métrica').isEnabled(),'compatible ranking');
+ await comparison.getByLabel('Eixo temporal').selectOption('utc');
+ await comparison.getByLabel('Eixo temporal').selectOption('elapsed');
+ const lightRow=comparison.getByRole('row').filter({has:page.getByRole('rowheader',{name:'Duração de luz',exact:true})});
+ const expected=(resultB.visibility.summary.sun.visible_seconds-resultA.visibility.summary.sun.visible_seconds)/3600;
+ assert((await lightRow.innerText()).includes(`${expected>=0?'+':''}${expected.toFixed(2)} h`),'incorrect light delta');
+ await writeFile('/tmp/antispiral-four-tasks-live.json',JSON.stringify({a:resultA,b:resultB},null,2));
+ console.log('LIVE: A + B, +24 h, timeline, play/pause without network, axes and real delta: OK');
+ // Explicit test-only intercepted replies exercise equality and incompatibility.
+ let mode='identical';
+ await page.route('**/api/positions',route=>{
+  if(mode==='error')return route.fulfill({status:503,contentType:'application/json',body:JSON.stringify({detail:'Horizons indisponível. Tente novamente.'})});
+  const value=structuredClone(resultA);value.run_id='test-only-copy';
+  if(mode==='incompatible')value.request.step_minutes=30;
+  return route.fulfill({status:200,contentType:'application/json',body:JSON.stringify(value)});
+ });
+ await a.getByRole('button',{name:'Duplicar para alterar local'}).click();
+ await b.getByLabel('Longitude este (°)').fill('10');
+ assert(await b.getByLabel('Latitude (°)').inputValue()==='-85','location copy changed other variable');
+ await b.getByRole('button',{name:'Analisar Sol e Terra — B'}).click();
+ await comparison.getByText('+0.00 pontos percentuais',{exact:true}).first().waitFor();
+ console.log('TEST FIXTURE: identical results produce zero deltas; custom location form: OK');
+ mode='incompatible';
+ await b.getByRole('button',{name:'Analisar Sol e Terra — B'}).click();
+ await comparison.getByRole('alert').filter({hasText:'passo diferente'}).waitFor();
+ assert(await comparison.getByLabel('Ordenar por métrica').isDisabled(),'incompatible ranking not blocked');
+ mode='error';
+ await b.getByRole('button',{name:'Analisar Sol e Terra — B'}).click();
+ await b.getByRole('alert').filter({hasText:'Horizons indisponível'}).waitFor();
+ assert(await comparison.count()===0,'comparison remained after failed B');
+ console.log('TEST FIXTURE: incompatible parameters block deltas/ranking, failed B removes comparison: OK');
+ await page.setViewportSize({width:390,height:844});
+ await page.screenshot({path:'/tmp/antispiral-four-tasks-mobile.png',fullPage:true});
+} finally {await browser.close();}

@@ -111,3 +111,18 @@ test('daily summaries respect year coverage and do not borrow hours from another
   assert.equal(lastDay.sampleCount, 24);
   for (const day of ['2025-12-31', '2027-01-01', '2026-02-29']) assert.throws(() => service.getDailyPolarSummary(table, day, 'south'));
 });
+
+const projection = await loadModule('../src/domain/lunarProjection.ts');
+test('lunar south polar stereographic controls, units, orientation and round trips',()=>{
+  assert.deepEqual(projection.projectSouth(-90,0),[0,0]);
+  const east=projection.projectSouth(-80,90), north=projection.projectSouth(-80,0);
+  assert.ok(Math.abs(east[1])<1e-8 && east[0]>0);
+  assert.ok(north[1]>0 && north[0]===0);
+  const equatorEast=projection.projectSouth(0,90);
+  assert.ok(Math.abs(equatorEast[0]-3474800)<1e-8 && Math.abs(equatorEast[1])<1e-8);
+  for(const [lat,lon] of [[-85.4381,37.36667],[-89.7668,-171.87],[-88.6834,-67.9321],[-85.9948,-.23578]]){
+    const [x,y]=projection.projectSouth(lat,lon);const back=projection.unprojectSouth(x,y);
+    assert.ok(Math.abs(back[0]-lat)<1e-9 && Math.abs(back[1]-lon)<1e-9);
+  }
+  assert.ok(Math.abs(projection.SOUTH_GRID.origin/projection.SOUTH_GRID.resolution0-128)<1e-10);
+});

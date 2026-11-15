@@ -10,6 +10,8 @@ from app.main import app
 
 @pytest.fixture
 def client():
+    from app.routers.accounts import attempts
+    attempts.clear()
     test_engine = create_engine(
         "sqlite://",
         connect_args={"check_same_thread": False},
@@ -21,6 +23,7 @@ def client():
         expire_on_commit=False,
     )
     Base.metadata.create_all(bind=test_engine)
+    app.state.testing_db = TestingSessionLocal
 
     def override_get_db():
         with TestingSessionLocal() as session:

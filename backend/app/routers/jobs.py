@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 
 from app.database import get_db
 from app.models import AnalysisJob
+from app.routers.accounts import current_user
 from app.schemas import JobCreate, JobRead
 
 router = APIRouter(prefix="/api/jobs", tags=["jobs"])
@@ -14,9 +15,10 @@ def list_jobs(
     offset: int = Query(default=0, ge=0),
     limit: int = Query(default=100, ge=1, le=500),
     db: Session = Depends(get_db),
+    user=Depends(current_user),
 ) -> list[AnalysisJob]:
     statement = (
-        select(AnalysisJob)
+        select(AnalysisJob).where(AnalysisJob.user_id == user.id)
         .order_by(AnalysisJob.created_at.desc(), AnalysisJob.id.desc())
         .offset(offset)
         .limit(limit)
@@ -25,8 +27,8 @@ def list_jobs(
 
 
 @router.post("", response_model=JobRead, status_code=201)
-def create_job(job: JobCreate, db: Session = Depends(get_db)) -> AnalysisJob:
-    record = AnalysisJob(**job.model_dump())
+def create_job(job: JobCreate, db: Session = Depends(get_db), user=Depends(current_user)) -> AnalysisJob:
+    record = AnalysisJob(**job.model_dump(), user_id=user.id)
     db.add(record)
     db.commit()
     db.refresh(record)

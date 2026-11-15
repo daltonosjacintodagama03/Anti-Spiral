@@ -1,0 +1,428 @@
+{
+  "requirements": {
+    "name": "Valida\u00e7\u00e3o polar \u2014 requisitos reais",
+    "objectives": [
+      "science",
+      "technology"
+    ],
+    "duration_value": 1,
+    "duration_unit": "week",
+    "start_utc": "2026-11-14T12:00:00Z",
+    "step_minutes": 60,
+    "site_ids": [
+      "nobile",
+      "malapert"
+    ],
+    "minimum_light_pct": 50,
+    "minimum_earth_pct": 50,
+    "maximum_dark_hours": 72,
+    "maximum_earth_outage_hours": 72
+  },
+  "sites": {
+    "nobile": {
+      "site": {
+        "id": "nobile",
+        "name": "Nobile Rim 1",
+        "latitude_deg": -85.4381,
+        "longitude_deg": 37.36667,
+        "source": "https://ntrs.nasa.gov/citations/20230007818",
+        "reference": "Lunar Surface Data Book Rev A (2023), Table A2-2, pp. 57\u201358; ponto regional, n\u00e3o aterragem certificada."
+      },
+      "status": "completed",
+      "checks": [
+        {
+          "name": "Frac\u00e7\u00e3o de luz m\u00ednima",
+          "actual": 100,
+          "limit": 50,
+          "unit": "%",
+          "met": true
+        },
+        {
+          "name": "Frac\u00e7\u00e3o terrestre m\u00ednima",
+          "actual": 92.14442913549652,
+          "limit": 50,
+          "unit": "%",
+          "met": true
+        },
+        {
+          "name": "Escurid\u00e3o m\u00e1xima",
+          "actual": 0,
+          "limit": 72,
+          "unit": "h",
+          "met": true
+        },
+        {
+          "name": "Interrup\u00e7\u00e3o terrestre m\u00e1xima",
+          "actual": 13.197359052365849,
+          "limit": 72,
+          "unit": "h",
+          "met": true
+        }
+      ],
+      "request": {
+        "latitude_deg": -85.4381,
+        "longitude_deg": 37.36667,
+        "start_utc": "2026-11-14T12:00:00Z",
+        "duration_hours": 168,
+        "step_minutes": 60
+      },
+      "visibility": {
+        "duration_seconds": 604800,
+        "summary": {
+          "sun": {
+            "visible_seconds": 604800,
+            "invisible_seconds": 0,
+            "known_seconds": 604800,
+            "unknown_seconds": 0,
+            "visible_fraction_total": 1,
+            "coverage_fraction": 1,
+            "longest_visible_seconds": 604800,
+            "longest_invisible_seconds": 0
+          },
+          "earth": {
+            "visible_seconds": 557289.507411483,
+            "invisible_seconds": 47510.49258851706,
+            "known_seconds": 604800,
+            "unknown_seconds": 0,
+            "visible_fraction_total": 0.9214442913549652,
+            "coverage_fraction": 1,
+            "longest_visible_seconds": 557289.507411483,
+            "longest_invisible_seconds": 47510.49258851706
+          },
+          "combined": {
+            "visible_seconds": 557289.507411483,
+            "invisible_seconds": 47510.49258851706,
+            "known_seconds": 604800,
+            "unknown_seconds": 0,
+            "visible_fraction_total": 0.9214442913549652,
+            "coverage_fraction": 1,
+            "longest_visible_seconds": 557289.507411483,
+            "longest_invisible_seconds": 47510.49258851706
+          }
+        },
+        "max_sun_elevation_deg": 6.101327,
+        "events": [
+          {
+            "event_type": "earthrise",
+            "time_utc": "2026-11-15T01:11:50.492589Z",
+            "bracket_start_utc": "2026-11-15T01:00:00Z",
+            "bracket_end_utc": "2026-11-15T02:00:00Z",
+            "method": "linear_interpolation"
+          }
+        ],
+        "windows": [
+          {
+            "condition": "combined",
+            "state": "invisible",
+            "start_utc": "2026-11-14T12:00:00Z",
+            "end_utc": "2026-11-15T01:11:50.492589Z",
+            "duration_seconds": 47510.49258851706
+          },
+          {
+            "condition": "combined",
+            "state": "visible",
+            "start_utc": "2026-11-15T01:11:50.492589Z",
+            "end_utc": "2026-11-21T12:00:00Z",
+            "duration_seconds": 557289.507411483
+          },
+          {
+            "condition": "earth",
+            "state": "invisible",
+            "start_utc": "2026-11-14T12:00:00Z",
+            "end_utc": "2026-11-15T01:11:50.492589Z",
+            "duration_seconds": 47510.49258851706
+          },
+          {
+            "condition": "earth",
+            "state": "visible",
+            "start_utc": "2026-11-15T01:11:50.492589Z",
+            "end_utc": "2026-11-21T12:00:00Z",
+            "duration_seconds": 557289.507411483
+          },
+          {
+            "condition": "sun",
+            "state": "visible",
+            "start_utc": "2026-11-14T12:00:00Z",
+            "end_utc": "2026-11-21T12:00:00Z",
+            "duration_seconds": 604800
+          }
+        ],
+        "event_absence": {
+          "sunrise": "not_found_in_range",
+          "sunset": "not_found_in_range",
+          "earthset": "not_found_in_range"
+        }
+      },
+      "sources": [
+        {
+          "body": "sun",
+          "url": "https://ssd.jpl.nasa.gov/api/horizons.api",
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'10'",
+            "OBJ_DATA": "'NO'",
+            "MAKE_EPHEM": "'YES'",
+            "EPHEM_TYPE": "'OBSERVER'",
+            "CENTER": "'coord@301'",
+            "COORD_TYPE": "'GEODETIC'",
+            "SITE_COORD": "'37.36667,-85.4381,0'",
+            "TIME_TYPE": "'UT'",
+            "TIME_DIGITS": "'SECONDS'",
+            "QUANTITIES": "'4'",
+            "APPARENT": "'AIRLESS'",
+            "CSV_FORMAT": "'YES'",
+            "ANG_FORMAT": "'DEG'",
+            "ELEV_CUT": "'-90'",
+            "SKIP_DAYLT": "'NO'",
+            "CAL_FORMAT": "'CAL'",
+            "CAL_TYPE": "'GREGORIAN'",
+            "START_TIME": "'2026-11-14 12:00:00'",
+            "STOP_TIME": "'2026-11-21 12:00:00'",
+            "STEP_SIZE": "'60 m'"
+          },
+          "retrieved_at": "2026-11-15T08:57:55.409659Z",
+          "response_sha256": "5a57dc0ee655d67a67c8e48c9fb5c84d6f68dcac765dcea96bec274ce8d7e041"
+        },
+        {
+          "body": "earth",
+          "url": "https://ssd.jpl.nasa.gov/api/horizons.api",
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'399'",
+            "OBJ_DATA": "'NO'",
+            "MAKE_EPHEM": "'YES'",
+            "EPHEM_TYPE": "'OBSERVER'",
+            "CENTER": "'coord@301'",
+            "COORD_TYPE": "'GEODETIC'",
+            "SITE_COORD": "'37.36667,-85.4381,0'",
+            "TIME_TYPE": "'UT'",
+            "TIME_DIGITS": "'SECONDS'",
+            "QUANTITIES": "'4'",
+            "APPARENT": "'AIRLESS'",
+            "CSV_FORMAT": "'YES'",
+            "ANG_FORMAT": "'DEG'",
+            "ELEV_CUT": "'-90'",
+            "SKIP_DAYLT": "'NO'",
+            "CAL_FORMAT": "'CAL'",
+            "CAL_TYPE": "'GREGORIAN'",
+            "START_TIME": "'2026-11-14 12:00:00'",
+            "STOP_TIME": "'2026-11-21 12:00:00'",
+            "STEP_SIZE": "'60 m'"
+          },
+          "retrieved_at": "2026-11-15T08:57:55.832439Z",
+          "response_sha256": "f0d1ed486006f36b8b3b5e9304839f495bc3c940c8d6197f15d9f769b50e3c3e"
+        }
+      ],
+      "sample_count": 169
+    },
+    "malapert": {
+      "site": {
+        "id": "malapert",
+        "name": "Malapert Massif",
+        "latitude_deg": -85.9948,
+        "longitude_deg": -0.23578,
+        "source": "https://ntrs.nasa.gov/citations/20230007818",
+        "reference": "Lunar Surface Data Book Rev A (2023), Table A2-2, pp. 57\u201358; ponto regional, n\u00e3o aterragem certificada."
+      },
+      "status": "completed",
+      "checks": [
+        {
+          "name": "Frac\u00e7\u00e3o de luz m\u00ednima",
+          "actual": 90.70440097299728,
+          "limit": 50,
+          "unit": "%",
+          "met": true
+        },
+        {
+          "name": "Frac\u00e7\u00e3o terrestre m\u00ednima",
+          "actual": 98.46506719725247,
+          "limit": 50,
+          "unit": "%",
+          "met": true
+        },
+        {
+          "name": "Escurid\u00e3o m\u00e1xima",
+          "actual": 15.616606365364566,
+          "limit": 72,
+          "unit": "h",
+          "met": true
+        },
+        {
+          "name": "Interrup\u00e7\u00e3o terrestre m\u00e1xima",
+          "actual": 2.57868710861585,
+          "limit": 72,
+          "unit": "h",
+          "met": true
+        }
+      ],
+      "request": {
+        "latitude_deg": -85.9948,
+        "longitude_deg": -0.23578000000000543,
+        "start_utc": "2026-11-14T12:00:00Z",
+        "duration_hours": 168,
+        "step_minutes": 60
+      },
+      "visibility": {
+        "duration_seconds": 604800,
+        "summary": {
+          "sun": {
+            "visible_seconds": 548580.2170846876,
+            "invisible_seconds": 56219.78291531244,
+            "known_seconds": 604800,
+            "unknown_seconds": 0,
+            "visible_fraction_total": 0.9070440097299728,
+            "coverage_fraction": 1,
+            "longest_visible_seconds": 548580.2170846876,
+            "longest_invisible_seconds": 56219.78291531244
+          },
+          "earth": {
+            "visible_seconds": 595516.7264089829,
+            "invisible_seconds": 9283.27359101706,
+            "known_seconds": 604800,
+            "unknown_seconds": 0,
+            "visible_fraction_total": 0.9846506719725246,
+            "coverage_fraction": 1,
+            "longest_visible_seconds": 595516.7264089829,
+            "longest_invisible_seconds": 9283.27359101706
+          },
+          "combined": {
+            "visible_seconds": 548580.2170846876,
+            "invisible_seconds": 56219.78291531244,
+            "known_seconds": 604800,
+            "unknown_seconds": 0,
+            "visible_fraction_total": 0.9070440097299728,
+            "coverage_fraction": 1,
+            "longest_visible_seconds": 548580.2170846876,
+            "longest_invisible_seconds": 56219.78291531244
+          }
+        },
+        "max_sun_elevation_deg": 4.792525,
+        "events": [
+          {
+            "event_type": "earthrise",
+            "time_utc": "2026-11-14T14:34:43.273591Z",
+            "bracket_start_utc": "2026-11-14T14:00:00Z",
+            "bracket_end_utc": "2026-11-14T15:00:00Z",
+            "method": "linear_interpolation"
+          },
+          {
+            "event_type": "sunrise",
+            "time_utc": "2026-11-15T03:36:59.782915Z",
+            "bracket_start_utc": "2026-11-15T03:00:00Z",
+            "bracket_end_utc": "2026-11-15T04:00:00Z",
+            "method": "linear_interpolation"
+          }
+        ],
+        "windows": [
+          {
+            "condition": "combined",
+            "state": "invisible",
+            "start_utc": "2026-11-14T12:00:00Z",
+            "end_utc": "2026-11-15T03:36:59.782915Z",
+            "duration_seconds": 56219.78291531244
+          },
+          {
+            "condition": "combined",
+            "state": "visible",
+            "start_utc": "2026-11-15T03:36:59.782915Z",
+            "end_utc": "2026-11-21T12:00:00Z",
+            "duration_seconds": 548580.2170846876
+          },
+          {
+            "condition": "earth",
+            "state": "invisible",
+            "start_utc": "2026-11-14T12:00:00Z",
+            "end_utc": "2026-11-14T14:34:43.273591Z",
+            "duration_seconds": 9283.27359101706
+          },
+          {
+            "condition": "earth",
+            "state": "visible",
+            "start_utc": "2026-11-14T14:34:43.273591Z",
+            "end_utc": "2026-11-21T12:00:00Z",
+            "duration_seconds": 595516.7264089829
+          },
+          {
+            "condition": "sun",
+            "state": "invisible",
+            "start_utc": "2026-11-14T12:00:00Z",
+            "end_utc": "2026-11-15T03:36:59.782915Z",
+            "duration_seconds": 56219.78291531244
+          },
+          {
+            "condition": "sun",
+            "state": "visible",
+            "start_utc": "2026-11-15T03:36:59.782915Z",
+            "end_utc": "2026-11-21T12:00:00Z",
+            "duration_seconds": 548580.2170846876
+          }
+        ],
+        "event_absence": {
+          "sunset": "not_found_in_range",
+          "earthset": "not_found_in_range"
+        }
+      },
+      "sources": [
+        {
+          "body": "sun",
+          "url": "https://ssd.jpl.nasa.gov/api/horizons.api",
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'10'",
+            "OBJ_DATA": "'NO'",
+            "MAKE_EPHEM": "'YES'",
+            "EPHEM_TYPE": "'OBSERVER'",
+            "CENTER": "'coord@301'",
+            "COORD_TYPE": "'GEODETIC'",
+            "SITE_COORD": "'-0.23578000000000543,-85.9948,0'",
+            "TIME_TYPE": "'UT'",
+            "TIME_DIGITS": "'SECONDS'",
+            "QUANTITIES": "'4'",
+            "APPARENT": "'AIRLESS'",
+            "CSV_FORMAT": "'YES'",
+            "ANG_FORMAT": "'DEG'",
+            "ELEV_CUT": "'-90'",
+            "SKIP_DAYLT": "'NO'",
+            "CAL_FORMAT": "'CAL'",
+            "CAL_TYPE": "'GREGORIAN'",
+            "START_TIME": "'2026-11-14 12:00:00'",
+            "STOP_TIME": "'2026-11-21 12:00:00'",
+            "STEP_SIZE": "'60 m'"
+          },
+          "retrieved_at": "2026-11-15T08:57:58.214219Z",
+          "response_sha256": "d62ef9440cefc48c486fe636dd85046c0c6628ecd6f0360dbfee64eafb1e94b9"
+        },
+        {
+          "body": "earth",
+          "url": "https://ssd.jpl.nasa.gov/api/horizons.api",
+          "parameters": {
+            "format": "json",
+            "COMMAND": "'399'",
+            "OBJ_DATA": "'NO'",
+            "MAKE_EPHEM": "'YES'",
+            "EPHEM_TYPE": "'OBSERVER'",
+            "CENTER": "'coord@301'",
+            "COORD_TYPE": "'GEODETIC'",
+            "SITE_COORD": "'-0.23578000000000543,-85.9948,0'",
+            "TIME_TYPE": "'UT'",
+            "TIME_DIGITS": "'SECONDS'",
+            "QUANTITIES": "'4'",
+            "APPARENT": "'AIRLESS'",
+            "CSV_FORMAT": "'YES'",
+            "ANG_FORMAT": "'DEG'",
+            "ELEV_CUT": "'-90'",
+            "SKIP_DAYLT": "'NO'",
+            "CAL_FORMAT": "'CAL'",
+            "CAL_TYPE": "'GREGORIAN'",
+            "START_TIME": "'2026-11-14 12:00:00'",
+            "STOP_TIME": "'2026-11-21 12:00:00'",
+            "STEP_SIZE": "'60 m'"
+          },
+          "retrieved_at": "2026-11-15T08:57:58.618793Z",
+          "response_sha256": "aaa4357831825169c800358413b9080c4f56d2dc6538fda922b5b2244f295774"
+        }
+      ],
+      "sample_count": 169
+    }
+  }
+}

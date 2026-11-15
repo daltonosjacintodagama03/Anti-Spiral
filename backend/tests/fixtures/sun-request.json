@@ -1,0 +1,22 @@
+{
+  "format": "json",
+  "COMMAND": "'10'",
+  "OBJ_DATA": "'NO'",
+  "MAKE_EPHEM": "'YES'",
+  "EPHEM_TYPE": "'OBSERVER'",
+  "CENTER": "'coord@301'",
+  "COORD_TYPE": "'GEODETIC'",
+  "SITE_COORD": "'0.0,-89.5,0'",
+  "TLIST": "'2026-11-14 12:00:00','2026-11-14 12:30:00','2026-11-14 13:00:00'",
+  "TLIST_TYPE": "'CAL'",
+  "TIME_TYPE": "'UT'",
+  "TIME_DIGITS": "'SECONDS'",
+  "QUANTITIES": "'4'",
+  "APPARENT": "'AIRLESS'",
+  "CSV_FORMAT": "'YES'",
+  "ANG_FORMAT": "'DEG'",
+  "ELEV_CUT": "'-90'",
+  "SKIP_DAYLT": "'NO'",
+  "CAL_FORMAT": "'CAL'",
+  "CAL_TYPE": "'GREGORIAN'"
+}

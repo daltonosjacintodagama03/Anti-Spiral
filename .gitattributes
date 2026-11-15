@@ -1,0 +1,2 @@
+# Preserve the original NASA response and its checksum in the source manifest.
+/docs/sources/moon-polar-wmts.xml -whitespace

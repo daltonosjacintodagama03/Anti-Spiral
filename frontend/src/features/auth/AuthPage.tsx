@@ -1,7 +1,8 @@
 import { useState, type FormEvent } from 'react';
 import { Link, Navigate, useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, BookOpen, Check, Eye, EyeOff, LockKeyhole, Moon, Rocket, Telescope } from 'lucide-react';
-import { useAuth, type Access } from './auth';
+import { useAuth, type Access, type Session } from './auth';
+import { api } from '@/services/http';
 import './auth.css';
 
 const PROFILES: { id: Access; title: string; description: string; Icon: typeof Rocket }[] = [
@@ -14,25 +15,31 @@ export default function AuthPage() {
   const [params] = useSearchParams();
   const location = useLocation();
   const navigate = useNavigate();
-  const { session, setSession } = useAuth();
+  const { session, setSession, loading } = useAuth();
   const initial = params.get('perfil') as Access;
   const [profile, setProfile] = useState<Access>(PROFILES.some((p) => p.id === initial) ? initial : 'explore');
   const [register, setRegister] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
+  const [busy,setBusy]=useState(false);
+  if(loading)return <p role="status">A verificar sessão…</p>;
   if (session) return <Navigate to={`/${session.access}`} replace />;
 
-  function submit(event: FormEvent<HTMLFormElement>) {
+  async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     const email = String(data.get('email') || '').trim();
     const password = String(data.get('password') || '');
     const name = String(data.get('name') || '').trim();
     if (password.length < 8) { setError('Use uma senha com pelo menos 8 caracteres.'); return; }
-    setError('');
-    setSession({ name: name || email.split('@')[0], email, access: profile });
-    const from = (location.state as { from?: string } | null)?.from;
-    navigate(from || `/${profile}`, { replace: true });
+    setError(''); setBusy(true);
+    try {
+      const account=await api<Session>(register?'/auth/register':'/auth/login',{method:'POST',body:JSON.stringify({email,password,access:profile,...(register?{name}:{})})});
+      setSession(account);
+      const from=(location.state as {from?:string}|null)?.from;
+      navigate(from?.startsWith('/')&&!from.startsWith('//')?from:`/${profile}`,{replace:true});
+    } catch(cause){setError(cause instanceof Error?cause.message:'Falha ao iniciar sessão.');}
+    finally{setBusy(false);}
   }
 
   return (
@@ -55,12 +62,12 @@ export default function AuthPage() {
             {register && <label className="auth-label">Nome completo<input name="name" type="text" autoComplete="name" placeholder="Como podemos chamar você?" required /></label>}
             <label className="auth-label">E-mail<input name="email" type="email" autoComplete="email" placeholder="voce@exemplo.com" required /></label>
             <label className="auth-label">Senha <span className="auth-hint">Mínimo de 8 caracteres</span><span className="auth-password"><input name="password" type={showPassword ? 'text' : 'password'} autoComplete={register ? 'new-password' : 'current-password'} placeholder="••••••••••" minLength={8} required /><button type="button" aria-label={showPassword ? 'Ocultar senha' : 'Mostrar senha'} onClick={() => setShowPassword(!showPassword)}>{showPassword ? <EyeOff size={18} /> : <Eye size={18} />}</button></span></label>
-            <fieldset className="auth-profiles"><legend>Seu perfil de acesso</legend>{PROFILES.map(({ id, title, description, Icon }) => <button className={`auth-profile ${profile === id ? 'is-selected' : ''}`} type="button" key={id} onClick={() => setProfile(id)} aria-pressed={profile === id}><span className="auth-profile__icon"><Icon size={19} /></span><span className="auth-profile__copy"><strong>{title}</strong><small>{description}</small></span><span className="auth-profile__check">{profile === id && <Check size={14} />}</span></button>)}</fieldset>
+            <fieldset className="auth-profiles"><legend>Preferência de apresentação</legend>{PROFILES.map(({ id, title, description, Icon }) => <button className={`auth-profile ${profile === id ? 'is-selected' : ''}`} type="button" key={id} onClick={() => setProfile(id)} aria-pressed={profile === id}><span className="auth-profile__icon"><Icon size={19} /></span><span className="auth-profile__copy"><strong>{title}</strong><small>{description}</small></span><span className="auth-profile__check">{profile === id && <Check size={14} />}</span></button>)}</fieldset>
             {error && <p className="auth-error" role="alert">{error}</p>}
-            <button className="auth-submit" type="submit">{register ? 'Criar conta' : 'Entrar'} <ArrowRight size={18} /></button>
+            <button className="auth-submit" type="submit" disabled={busy}>{busy?'A processar…':register ? 'Criar conta' : 'Entrar'} <ArrowRight size={18} /></button>
           </form>
           <p className="auth-switch">{register ? 'Já tem uma conta?' : 'Ainda não tem uma conta?'} <button type="button" onClick={() => { setRegister(!register); setError(''); }}>{register ? 'Entrar' : 'Cadastre-se'}</button></p>
-          <p className="auth-secure"><LockKeyhole size={14} /> Acesso seguro à sua jornada lunar</p>
+          <p className="auth-secure"><LockKeyhole size={14} /> Sessão protegida por cookie. Recuperação de senha por email ainda indisponível.</p>
         </div>
         <p className="auth-terms">Ao continuar, você concorda com nossos <a href="#termos">Termos de uso</a> e <a href="#privacidade">Política de privacidade</a>.</p>
       </div>
