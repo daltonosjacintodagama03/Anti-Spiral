@@ -1,24 +1,36 @@
 import { useMemo, useState } from 'react';
 import { Link, NavLink, useNavigate, useParams } from 'react-router-dom';
-import { Activity, ArrowRight, Bell, BookOpen, Check, Download, FileBarChart2, FileText, LayoutDashboard, LogOut, MapPin, Moon, Search, Settings2, SlidersHorizontal, Telescope, TriangleAlert } from 'lucide-react';
+import { Activity, ArrowRight, Bell, BookOpen, Check, Compass, Download, FileBarChart2, FileText, Gauge, Globe2, LayoutDashboard, LogOut, MapPin, Moon, Search, Settings2, SlidersHorizontal, Telescope, TriangleAlert } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { useAuth } from '@/features/auth/auth';
 import { useSites } from '@/services/useSites';
 import type { LandingSite } from '@/types/site';
 import { LunarMap } from './LunarMap';
-import PolarOverview from './PolarOverview';
 import './workspace.css';
 
 export type Mode = 'planeje' | 'estude' | 'explore';
 type Section = { id: string; label: string; icon: typeof LayoutDashboard };
 
-const SECTIONS: Section[] = [
-  { id: 'visao-geral', label: 'Visão geral', icon: LayoutDashboard },
-  { id: 'requisitos', label: 'Requisitos da missão', icon: SlidersHorizontal },
-  { id: 'locais', label: 'Análise de locais', icon: MapPin },
-  { id: 'resultados', label: 'Resultados', icon: FileBarChart2 },
-  { id: 'relatorios', label: 'Relatórios', icon: FileText },
-];
+const SECTIONS: Record<Mode, Section[]> = {
+  planeje: [
+    { id: 'visao-geral', label: 'Visão geral', icon: LayoutDashboard },
+    { id: 'requisitos', label: 'Requisitos da missão', icon: SlidersHorizontal },
+    { id: 'locais', label: 'Análise de locais', icon: MapPin },
+    { id: 'resultados', label: 'Resultados', icon: FileBarChart2 },
+    { id: 'relatorios', label: 'Relatórios', icon: FileText },
+  ],
+  estude: [
+    { id: 'visao-geral', label: 'Visão geral', icon: LayoutDashboard },
+    { id: 'aprender', label: 'Aprender', icon: BookOpen },
+    { id: 'dados', label: 'Dados lunares', icon: Activity },
+    { id: 'locais', label: 'Explorar locais', icon: MapPin },
+  ],
+  explore: [
+    { id: 'visao-geral', label: 'Visão geral', icon: LayoutDashboard },
+    { id: 'explorar', label: 'Mapa lunar', icon: Compass },
+    { id: 'simulador', label: 'Simulador', icon: Gauge },
+  ],
+};
 
 const ROLE_NAME: Record<Mode, string> = {
   planeje: 'Planejador de missão', estude: 'Educador / Estudante', explore: 'Público / Entusiasta',
@@ -34,6 +46,10 @@ const SECTION_TITLES: Record<string, string> = {
   resultados: 'Locais candidatos para comparação', relatorios: 'Relatórios da missão',
   aprender: 'Aprender sobre a Lua', dados: 'Dados para explorar', explorar: 'Explore o Polo Sul Lunar', simulador: 'Simulador de missão',
 };
+
+function Metric({ label, value, note, icon: Icon }: { label: string; value: string; note: string; icon: typeof Activity }) {
+  return <article className="metric-card"><span className="metric-card__icon"><Icon size={18} /></span><span className="metric-card__label">{label}</span><strong>{value}</strong><small>{note}</small></article>;
+}
 
 function CandidateRows({ sites, selectedId, onSelect, query = '' }: { sites: LandingSite[]; selectedId: string | null; onSelect: (id: string) => void; query?: string }) {
   const visible = sites.filter((site) => site.name.toLowerCase().includes(query.toLowerCase()));
@@ -52,7 +68,7 @@ export default function WorkspacePage({ mode }: { mode: Mode }) {
   const { session, setSession } = useAuth();
   const { section: requestedSection } = useParams();
   const navigate = useNavigate();
-  const sections = SECTIONS;
+  const sections = SECTIONS[mode];
   const section = sections.some((item) => item.id === requestedSection) ? requestedSection! : 'visao-geral';
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [query, setQuery] = useState('');
@@ -83,9 +99,11 @@ export default function WorkspacePage({ mode }: { mode: Mode }) {
   return <div className="workspace-app">
     <aside className="workspace-sidebar" aria-label="Área de trabalho">
       <Link to="/" className="workspace-brand" aria-label="Luna Navigator — início"><span><Moon size={21} /></span><strong>Luna Navigator</strong></Link>
+      <div className="workspace-sidebar__label">ESPAÇO DE TRABALHO</div>
       <nav className="workspace-nav" aria-label="Navegação do perfil">
         {sections.map(({ id, label, icon: Icon }) => <NavLink key={id} to={id === 'visao-geral' ? base : `${base}/${id}`} end className={({ isActive }) => `workspace-nav__link ${isActive ? 'is-active' : ''}`}><Icon size={17} /><span>{label}</span>{id === 'requisitos' && computed && <span className="workspace-nav__count">✓</span>}</NavLink>)}
       </nav>
+      <div className="workspace-sidebar__foot"><span className="sidebar-moon" aria-hidden="true" /><small>PLANEJAMENTO HOJE.<br />NOVAS DESCOBERTAS AMANHÃ.</small></div>
     </aside>
 
     <div className="workspace-main">
@@ -95,24 +113,25 @@ export default function WorkspacePage({ mode }: { mode: Mode }) {
       </header>
 
       <main className="workspace-content">
-        {section !== 'visao-geral' && <div className="workspace-heading"><div><span className="workspace-eyebrow">{ROLE_NAME[mode].toUpperCase()}</span><h1>{title}</h1><p>{getSectionIntro(mode, section)}</p></div>
-          {section === 'resultados' && <Button variant="ghost" onClick={downloadReport}><Download size={16} /> Exportar CSV</Button>}
-        </div>}
+        <div className="workspace-heading"><div><span className="workspace-eyebrow">{ROLE_NAME[mode].toUpperCase()}</span><h1>{section === 'visao-geral' ? `Olá, ${session?.name?.split(' ')[0] || 'explorador'}.` : title}</h1><p>{section === 'visao-geral' ? ROLE_INTRO[mode] : getSectionIntro(mode, section)}</p></div>
+          {mode === 'planeje' && section === 'resultados' && <Button variant="ghost" onClick={downloadReport}><Download size={16} /> Exportar CSV</Button>}
+        </div>
 
-        {section !== 'visao-geral' && <div className="workspace-demo-notice" role="note"><TriangleAlert size={16} /><span><strong>Ambiente demonstrativo.</strong> Os locais e métricas são dados de exemplo. Não use para decisões operacionais de missão.</span></div>}
+        <div className="workspace-demo-notice" role="note"><TriangleAlert size={16} /><span><strong>Ambiente demonstrativo.</strong> Os locais e métricas são dados de exemplo. Não use para decisões operacionais de missão.</span></div>
 
-        {section !== 'visao-geral' && state.status === 'loading' && <div className="workspace-loading" aria-busy="true"><span className="loading-orbit" />Carregando dados de demonstração…</div>}
-        {section !== 'visao-geral' && state.status === 'error' && <div className="workspace-error" role="alert"><p>{state.message}</p><Button onClick={reload}>Tentar novamente</Button></div>}
-        {section === 'visao-geral' && <PolarOverview />}
+        {state.status === 'loading' && <div className="workspace-loading" aria-busy="true"><span className="loading-orbit" />Carregando dados de demonstração…</div>}
+        {state.status === 'error' && <div className="workspace-error" role="alert"><p>{state.message}</p><Button onClick={reload}>Tentar novamente</Button></div>}
         {state.status === 'ready' && <>
-          {section === 'requisitos' && <Requirements objective={objective} setObjective={setObjective} duration={duration} setDuration={setDuration} energy={energy} setEnergy={setEnergy} communication={communication} setCommunication={setCommunication} energyWeight={energyWeight} setEnergyWeight={setEnergyWeight} onSubmit={() => { setComputed(true); navigate(`${base}/resultados`); }} />}
-          {section === 'locais' && <LocationAnalysis sites={sites} selectedId={selectedId} onSelect={setSelectedId} selectedSite={selectedSite} query={query} setQuery={setQuery} />}
-          {section === 'resultados' && <Results sites={orderedSites} selectedId={selectedId} onSelect={setSelectedId} computed={computed} />}
-          {section === 'relatorios' && <Reports sites={orderedSites} onDownload={downloadReport} computed={computed} />}
-          {section === 'aprender' && <Learning />}
-          {section === 'dados' && <DataCatalog sites={sites} />}
-          {section === 'explorar' && <Explorer sites={sites} selectedId={selectedId} onSelect={setSelectedId} selectedSite={selectedSite} />}
-          {section === 'simulador' && <Simulator days={simulationDays} setDays={setSimulationDays} message={simulationMessage} onRun={() => setSimulationMessage(`Cenário ilustrativo de ${simulationDays} dias preparado. Estes dados não representam uma simulação física.`)} />}
+          {section === 'visao-geral' && <Overview mode={mode} sites={sites} navigate={navigate} base={base} computed={computed} />}
+          {mode === 'planeje' && section === 'requisitos' && <Requirements objective={objective} setObjective={setObjective} duration={duration} setDuration={setDuration} energy={energy} setEnergy={setEnergy} communication={communication} setCommunication={setCommunication} energyWeight={energyWeight} setEnergyWeight={setEnergyWeight} onSubmit={() => { setComputed(true); navigate(`${base}/resultados`); }} />}
+          {mode === 'planeje' && section === 'locais' && <LocationAnalysis sites={sites} selectedId={selectedId} onSelect={setSelectedId} selectedSite={selectedSite} query={query} setQuery={setQuery} />}
+          {mode === 'planeje' && section === 'resultados' && <Results sites={orderedSites} selectedId={selectedId} onSelect={setSelectedId} computed={computed} />}
+          {mode === 'planeje' && section === 'relatorios' && <Reports sites={orderedSites} onDownload={downloadReport} computed={computed} />}
+          {mode === 'estude' && section === 'aprender' && <Learning />}
+          {mode === 'estude' && section === 'dados' && <DataCatalog sites={sites} />}
+          {mode === 'estude' && section === 'locais' && <LocationAnalysis sites={sites} selectedId={selectedId} onSelect={setSelectedId} selectedSite={selectedSite} query={query} setQuery={setQuery} />}
+          {mode === 'explore' && section === 'explorar' && <Explorer sites={sites} selectedId={selectedId} onSelect={setSelectedId} selectedSite={selectedSite} />}
+          {mode === 'explore' && section === 'simulador' && <Simulator days={simulationDays} setDays={setSimulationDays} message={simulationMessage} onRun={() => setSimulationMessage(`Cenário ilustrativo de ${simulationDays} dias preparado. Estes dados não representam uma simulação física.`)} />}
         </>}
       </main>
     </div>
@@ -131,6 +150,18 @@ function getSectionIntro(mode: Mode, section: string) {
     simulador: 'Monte um cenário didático sem valor operacional ou científico.',
   };
   return intro[section] || ROLE_INTRO[mode];
+}
+
+function Overview({ mode, sites, navigate, base, computed }: { mode: Mode; sites: LandingSite[]; navigate: ReturnType<typeof useNavigate>; base: string; computed: boolean }) {
+  const primary = mode === 'planeje' ? ['requisitos', 'Definir requisitos', 'Ajuste o objetivo e os pesos de comparação.', SlidersHorizontal] as const : mode === 'estude' ? ['aprender', 'Continuar aprendendo', 'Explore conceitos de iluminação e terreno.', BookOpen] as const : ['explorar', 'Abrir mapa lunar', 'Encontre os locais no mapa do Polo Sul.', Compass] as const;
+  const PrimaryIcon = primary[3];
+  return <>
+    <section className="metric-grid" aria-label="Indicadores"><Metric label="Locais candidatos" value={String(sites.length).padStart(2, '0')} note="No conjunto demonstrativo" icon={MapPin} /><Metric label="Iluminação média" value={`${Math.round(sites.reduce((sum, site) => sum + site.illuminationPct, 0) / Math.max(sites.length, 1))}%`} note="Estimativa fictícia" icon={Activity} /><Metric label="Região" value="Polo Sul" note="Área de interesse" icon={Globe2} /></section>
+    <section className="workspace-overview-grid"><article className="workspace-panel overview-primary"><div className="workspace-panel__head"><div><span className="workspace-eyebrow">PRÓXIMA ETAPA</span><h2>{primary[1]}</h2><p>{primary[2]}</p></div><span className="overview-primary__icon"><PrimaryIcon size={22} /></span></div><Button onClick={() => navigate(`${base}/${primary[0]}`)}>Abrir módulo <ArrowRight size={16} /></Button></article>
+      <article className="workspace-panel"><div className="workspace-panel__head"><div><span className="workspace-eyebrow">ATIVIDADE</span><h2>{mode === 'planeje' ? 'Sua missão' : mode === 'estude' ? 'Seu aprendizado' : 'Sua exploração'}</h2></div></div><div className="activity-row"><span className="activity-status"><Check size={14} /></span><div><strong>{mode === 'planeje' ? (computed ? 'Comparação demonstrativa pronta' : 'Requisitos por definir') : mode === 'estude' ? 'Conteúdo disponível para explorar' : 'Mapa lunar pronto'}</strong><small>{mode === 'planeje' && computed ? 'Resultado local · sem processamento no servidor' : 'Nenhuma atividade foi salva no servidor'}</small></div></div><p className="workspace-footnote">Esta sessão é local e temporária.</p></article>
+    </section>
+    <section className="workspace-panel"><div className="workspace-panel__head"><div><span className="workspace-eyebrow">LOCAIS EM DESTAQUE</span><h2>Compare as condições de exemplo</h2></div><button className="text-action" onClick={() => navigate(`${base}/${mode === 'planeje' ? 'locais' : mode === 'estude' ? 'locais' : 'explorar'}`)}>Ver locais <ArrowRight size={15} /></button></div><CandidateRows sites={sites.slice(0, 3)} selectedId={null} onSelect={(id) => navigate(`${base}/${mode === 'planeje' ? 'locais' : mode === 'estude' ? 'locais' : 'explorar'}?local=${id}`)} /></section>
+  </>;
 }
 
 function Requirements({ objective, setObjective, duration, setDuration, energy, setEnergy, communication, setCommunication, energyWeight, setEnergyWeight, onSubmit }: { objective: string; setObjective: (value: string) => void; duration: string; setDuration: (value: string) => void; energy: string; setEnergy: (value: string) => void; communication: string; setCommunication: (value: string) => void; energyWeight: number; setEnergyWeight: (value: number) => void; onSubmit: () => void }) {
@@ -167,7 +198,7 @@ function Learning() {
   return <div className="lesson-grid">{lessons.map(([number, title, text]) => <article className="lesson-card" key={number}><span>{number}</span><BookOpen size={19} /><h2>{title}</h2><p>{text}</p></article>)}</div>;
 }
 function DataCatalog({ sites }: { sites: LandingSite[] }) {
-  return <><div className="data-source-notice"><TriangleAlert size={17} /><p><strong>A Visão geral usa efemérides NASA reais de 2026.</strong> Os candidatos e métricas deste catálogo antigo continuam a ser exemplos e não alimentam a Visão geral.</p></div><div className="workspace-panel"><div className="workspace-panel__head"><div><span className="workspace-eyebrow">VARIÁVEIS</span><h2>O que aparece nesta demonstração</h2></div></div><div className="data-variable-grid"><span><strong>Inclinação</strong><small>Graus — valores de exemplo</small></span><span><strong>Iluminação</strong><small>Percentual — valores de exemplo</small></span><span><strong>Visibilidade da Terra</strong><small>Percentual — valores de exemplo</small></span><span><strong>Posição relativa</strong><small>Distância em km — esquemática</small></span></div><p className="workspace-footnote">Locais carregados nesta página: {sites.map((site) => site.name).join(', ') || 'nenhum'}.</p></div><div className="reference-links"><a href="https://svs.gsfc.nasa.gov/5587/" target="_blank" rel="noreferrer">Efemérides NASA SVS 2026 <ArrowRight size={14} /></a><a href="https://quickmap.lroc.asu.edu/" target="_blank" rel="noreferrer">LROC QuickMap <ArrowRight size={14} /></a><a href="https://www.asc-csa.gc.ca/eng/astronomy/moon-exploration/" target="_blank" rel="noreferrer">CSA Moon Exploration <ArrowRight size={14} /></a><a href="https://trek.nasa.gov/moon/" target="_blank" rel="noreferrer">NASA Moon Trek <ArrowRight size={14} /></a><a href="https://lunar.gsfc.nasa.gov/lola.html" target="_blank" rel="noreferrer">LRO / LOLA <ArrowRight size={14} /></a><a href="https://ssd.jpl.nasa.gov/horizons/" target="_blank" rel="noreferrer">JPL Horizons <ArrowRight size={14} /></a></div></>;
+  return <><div className="data-source-notice"><TriangleAlert size={17} /><p><strong>Dados de exemplo nesta versão.</strong> Referências externas abaixo não estão ligadas a uma API de consulta.</p></div><div className="workspace-panel"><div className="workspace-panel__head"><div><span className="workspace-eyebrow">VARIÁVEIS</span><h2>O que aparece nesta demonstração</h2></div></div><div className="data-variable-grid"><span><strong>Inclinação</strong><small>Graus — valores de exemplo</small></span><span><strong>Iluminação</strong><small>Percentual — valores de exemplo</small></span><span><strong>Visibilidade da Terra</strong><small>Percentual — valores de exemplo</small></span><span><strong>Posição relativa</strong><small>Distância em km — esquemática</small></span></div><p className="workspace-footnote">Locais carregados nesta página: {sites.map((site) => site.name).join(', ') || 'nenhum'}.</p></div><div className="reference-links"><a href="https://trek.nasa.gov/moon/" target="_blank" rel="noreferrer">NASA Moon Trek <ArrowRight size={14} /></a><a href="https://lunar.gsfc.nasa.gov/lola.html" target="_blank" rel="noreferrer">LRO / LOLA <ArrowRight size={14} /></a><a href="https://ssd.jpl.nasa.gov/horizons/" target="_blank" rel="noreferrer">JPL Horizons <ArrowRight size={14} /></a></div></>;
 }
 function Explorer({ sites, selectedId, onSelect, selectedSite }: { sites: LandingSite[]; selectedId: string | null; onSelect: (id: string) => void; selectedSite?: LandingSite }) {
   return <section className="explorer-layout"><div className="explorer-map"><LunarMap sites={sites} selectedId={selectedId} onSelect={onSelect} /><span className="explorer-map__caption">POLO SUL LUNAR · MAPA ESQUEMÁTICO</span></div><aside className="workspace-panel explorer-sidebar"><span className="workspace-eyebrow">EXPLORAÇÃO</span><h2>{selectedSite?.name || 'Escolha um local'}</h2><p>Selecione um marcador para consultar as métricas de demonstração disponíveis.</p><CandidateRows sites={sites} selectedId={selectedId} onSelect={onSelect} /><div className="explorer-fact"><Telescope size={18} /><p>As regiões permanentemente sombreadas podem conservar gelo de água. A confirmação depende de observações e medições.</p></div></aside></section>;

@@ -1,1 +1,5 @@
 frontend/node_modules/
+*.pyc
+.env
+.venv
+/frontend/dist/

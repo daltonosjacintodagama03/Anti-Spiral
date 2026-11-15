@@ -133,3 +133,16 @@ Os cabeçalhos das outras páginas mantêm-se. Checks: `npm run typecheck` e
 
 Removido o bloco “PLANEJAMENTO HOJE. NOVAS DESCOBERTAS AMANHÃ.” do menu lateral.
 Verificação: `git diff --check`. Validação humana pendente; sem commit.
+
+## Integração das branches — 2026-11-15
+
+- Estado: `awaiting_human_validation`; merge preparado, sem commit nem push.
+- Destino: `dev`, com acompanhamento de `origin/dev` configurado.
+- Integração de `origin/silver/migration_conf`, que já contém `origin/dev`.
+- `frontend/` igual a `origin/dalton/frontend`; `backend/` igual a `origin/silver/migration_conf`.
+- A prioridade Dalton remove da árvore actual as alterações de frontend do commit
+  `c64a1fc`; esse commit continua no histórico.
+- Check: `npm run build` passou (TypeScript e Vite).
+- Testes backend não executados: `python3 -m pytest` falhou porque pytest não está instalado; `python` também não está disponível.
+- Validar: executar frontend conforme README e backend conforme backend/README.md.
+- Commit sugerido: `merge: integrate Dalton frontend and Silver backend into dev`.
